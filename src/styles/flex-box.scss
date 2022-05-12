@@ -337,3 +337,36 @@ $val in $align-self {
     align-self: #{$val};
   }
 }
+
+/* Flex gap */
+$gap: (
+  1: 1%,
+  2: 2%,
+  4: 4%,
+  5: 5%,
+  10: 10%
+);
+
+@each $name, $val in $gap {
+  .flex-gap#{$name} {
+    gap: #{$val};
+  }
+}
+
+@each $name, $val in $gap {
+  @include nm(flex-gap#{$name}) {
+    gap: #{$val};
+  }
+}
+
+@each $name, $val in $gap {
+  @include dk(flex-gap#{$name}) {
+    gap: #{$val};
+  }
+}
+
+@each $name, $val in $gap {
+  @include tb(flex-gap#{$name}) {
+    gap: #{$val};
+  }
+}

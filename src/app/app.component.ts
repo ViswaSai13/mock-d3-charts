@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mock-d3-charts';
+  isExpand = false
+  toggleExpand(){
+    this.isExpand = !this.isExpand
+  }
 }

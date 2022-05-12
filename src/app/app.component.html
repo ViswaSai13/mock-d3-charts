@@ -55,4 +55,36 @@
     <span>{{ title }} app is running!</span>
   </div>
 </div>
-<!-- <div class="w100p border-bottom">Hello</div> -->
+<div class="w100p ph4 pb2 flex justify-end">
+  <div
+    class="border-all border-indigo text-indigo pointer ph2 pv1 br5 f14 w130 text-center"
+    (click)="toggleExpand()"
+  >
+    <div *ngIf="!isExpand">Expand View</div>
+    <div *ngIf="isExpand">Collapse View</div>
+  </div>
+</div>
+<div class="chartsContent w100p ph4">
+  <div
+    class="chartRow1 flex w100p justify-between pv2"
+    [ngClass]="[!isExpand ? 'flex-row' : 'flex-col']"
+  >
+    <div class="flex border-all" [ngClass]="[!isExpand ? 'w50p' : 'w100p']">
+      <app-line-chart></app-line-chart>
+    </div>
+    <div class="flex border-all" [ngClass]="[!isExpand ? 'w50p' : 'w100p mt4']">
+      <app-bubble-chart></app-bubble-chart>
+    </div>
+  </div>
+  <div
+    class="chartRow2 flex w100p justify-between pv2"
+    [ngClass]="[!isExpand ? 'flex-row' : 'flex-col']"
+  >
+    <div class="flex border-all" [ngClass]="[!isExpand ? 'w50p' : 'w100p']">
+      <app-pie-chart></app-pie-chart>
+    </div>
+    <div class="flex border-all" [ngClass]="[!isExpand ? 'w50p' : 'w100p mt4']">
+      <app-bar-chart></app-bar-chart>
+    </div>
+  </div>
+</div>
