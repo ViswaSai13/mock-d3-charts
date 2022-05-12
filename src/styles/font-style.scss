@@ -1,0 +1,48 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: font style
+name: font style
+category: font style
+---
+## font style
+
+<p class="underline">.underline</p>
+<p class="italic">.italic</p>
+<p class="uppercase">.uppercase</p>
+<p class="lowercase">.lowercase</p>
+<p class="capitalize">.capitalize</p>
+
+*/
+// stylelint-enable
+
+@import './_breakpoints.scss';
+
+.underline {
+  text-decoration: underline;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}

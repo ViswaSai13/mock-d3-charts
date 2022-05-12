@@ -1,0 +1,255 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: utilities
+name: utilities
+category: utilities
+---
+## utilities
+
+<br class="mt3">
+### Site Max Width
+Site max-width = 1240px with 20px padding left/right  
+*Important* Add .max-width-site to .row
+
+<div class="row max-width-site mb3 h50">
+  <div class="col-24 bg-white-smoke">.row.max-width-site</div>
+</div>
+
+<div class="row max-width-site-nm mb3 h50">
+  <div class="col-24 bg-white-smoke">.row.max-width-site-nm</div>
+</div>
+
+<br class="mt3">
+### Dim
+<div class="button w160 h50 bg-white-smoke dim mt2 mb3">.dim</div>
+
+<br class="mt3">
+### Fade Away
+Overlays the element with a horizontal fade at the right or left edge.  
+Used for overflowing copy on articles titles, related article filters, etc  
+Fade away button is a special case that adds top and bottom border to the fade. Used with year selector.  
+<div class="button w160 h50 bg-white-smoke mt2 mb3 fade-away-l pos-rel">.fade-away-l</div>
+<div class="button w160 h50 bg-white-smoke mt2 mb3 fade-away-r pos-rel">.fade-away-r</div>
+<div class="button w160 h50 bg-white-smoke mt2 mb3 fade-away-h pos-rel">.fade-away-h</div>
+<div class="button w160 h50 bg-white-smoke mt2 mb3 fade-button-away-r pos-rel">.fade-button-away-h</div>
+
+<br class="mt3">
+### Hover Show Child
+<div class="w300 hover-show-child h50 bg-white-smoke mt2 mb3">
+  <div>.hover-show-child</div>
+  <div class="hover-child">.hover-child</div>
+</div>
+
+<br class="mt3">
+### Hover Filter
+<div class="w300 hover-filter h50 bg-white-smoke mt2 mb3">
+  <div>.hover-filter</div>
+  <div class="hover-filter">.hover-filter</div>
+</div>
+
+*/
+// stylelint-enable
+
+/* Max Width Site */
+
+@import './_breakpoints.scss';
+@import 'colors';
+
+$max-width-site: 75rem; // 1200px
+
+.max-width-site {
+  max-width: $max-width-site;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@include nm(max-width-site) {
+  max-width: $max-width-site;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Dim */
+
+.dim {
+  opacity: 1;
+  transition: opacity 0.15s ease-in;
+  transform: translate3d(0, 0, 0);
+
+  &:hover,
+  &:focus {
+    opacity: 0.5;
+    transition: opacity 0.15s ease-in;
+  }
+
+  &:active {
+    opacity: 0.8;
+    transition: opacity 0.15s ease-out;
+  }
+}
+
+/* Fade Away effect */
+
+.fade-away-r {
+  &::after {
+    content: '';
+    width: 4rem;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    // order matters here
+    background: transparent; /* fallback color if gradients are not supported */
+    background: -webkit-linear-gradient(to left, $transparent-white, $white); /* For Chrome 25 and Safari 6, iOS 6.1, Android 4.3 */
+    background: -moz-linear-gradient(to right, $transparent-white $white); /* For Firefox (3.6 to 15) */
+    background: -o-linear-gradient(to right, $transparent-white, $white); /* For old Opera (11.1 to 12.0) */
+    background: linear-gradient(to right, $transparent-white, $white); /* Standard syntax; must be last */
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fade-away-r-black {
+  &::after {
+    content: '';
+    width: 4rem;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    // order matters here
+    background: transparent; /* fallback color if gradients are not supported */
+    background: -webkit-linear-gradient(to left, $transparent-black, $black); /* For Chrome 25 and Safari 6, iOS 6.1, Android 4.3 */
+    background: -moz-linear-gradient(to right, $transparent-black, $black); /* For Firefox (3.6 to 15) */
+    background: -o-linear-gradient(to right, $transparent-black, $black); /* For old Opera (11.1 to 12.0) */
+    background: linear-gradient(to right, $transparent-black, $black); /* Standard syntax; must be last */
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fade-away-b-h100 {
+  &::after {
+    content: '';
+    width: 100%;
+    height: 6.25rem; // 100px
+    position: absolute;
+    right: 0;
+    top: 0;
+    // order matters here
+    background: -moz-linear-gradient(180deg, $transparent-white 60%, $white); /* FF3.6-15 */
+    background: -webkit-linear-gradient(180deg, $transparent-white 60%, $white); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(180deg, $transparent-white 60%, $white); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#a6000000', endColorstr='#ffffffff', GradientType=0); /* IE6-9 */
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fade-away-none {
+  &::after {
+    background: transparent;
+  }
+}
+
+@include nm(fade-away-none) {
+  &::after {
+    background: transparent;
+  }
+}
+
+.fade-away-l {
+  &::before {
+    content: '';
+    width: 4rem;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    // order matters here
+    background: transparent; /* fallback color if gradients are not supported */
+    background: -webkit-linear-gradient(to right, $transparent-white, $white); /* For Chrome 25 and Safari 6, iOS 6.1, Android 4.3 */
+    background: -moz-linear-gradient(to left, $transparent-white $white); /* For Firefox (3.6 to 15) */
+    background: -o-linear-gradient(to left, $transparent-white, $white); /* For old Opera (11.1 to 12.0) */
+    background: linear-gradient(to left, $transparent-white, $white); /* Standard syntax; must be last */
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fade-away-l-black {
+
+  &::after {
+    content: '';
+    width: 4rem;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    // order matters here
+    background: transparent; /* fallback color if gradients are not supported */
+    background: -webkit-linear-gradient(to right, $transparent-black, $black); /* For Chrome 25 and Safari 6, iOS 6.1, Android 4.3 */
+    background: -moz-linear-gradient(to left, $transparent-black, $black); /* For Firefox (3.6 to 15) */
+    background: -o-linear-gradient(to left, $transparent-black, $black); /* For old Opera (11.1 to 12.0) */
+    background: linear-gradient(to left, $transparent-black, $black); /* Standard syntax; must be last */
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fade-away-h {
+  @extend .fade-away-r;
+  @extend .fade-away-l;
+}
+
+.fade-away-button-r {
+  @extend .fade-away-r;
+  &::after {
+    box-sizing: border-box;
+    border-top: solid 1px $white-smoke;
+    border-bottom: solid 1px $white-smoke;
+  }
+}
+
+/* Hover Show/Hide Child */
+.hover-show-child {
+  .hover-child {
+    display: none;
+  }
+
+  &:hover .hover-child {
+    display: block;
+  }
+}
+
+/* Hover Brighten Effects */
+
+.hover-filter {
+  filter: brightness(100%);
+  transition: filter 0.3s ease-in-out;
+  transform: translate3d(0, 0, 0);
+
+  &:hover,
+  &:active,
+  &:focus {
+    filter: brightness(115%);
+  }
+}
+
+.hover-bodystyle {
+  filter: brightness(100%);
+  transition: filter 0.3s ease-in-out;
+  transform: translate3d(0, 0, 0);
+
+  &:hover,
+  &:focus {
+    filter: brightness(110%);
+  }
+
+  &:active {
+    filter: brightness(110%);
+  }
+}

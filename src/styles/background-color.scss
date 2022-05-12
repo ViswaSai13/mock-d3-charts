@@ -1,0 +1,75 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: background color
+name: background color
+category: background color
+---
+## background color
+
+<div class="row waf-4 mt3">
+  <div class="pa3 bg-black text-white">.bg-black</div>
+  <div class="pa3 bg-nero text-white">.bg-nero</div>
+  <div class="pa3 bg-night-rider text-white">.bg-night-rider</div>
+  <div class="pa3 bg-charcoal text-white">.bg-charcoal</div>
+  <div class="pa3 bg-dim-grey text-white">.bg-dim-grey</div>
+  <div class="pa3 bg-suva-grey text-white">.bg-suva-grey</div>
+  <div class="pa3 bg-dark-grey text-white">.bg-dark-grey</div>
+  <div class="pa3 bg-silver text-white">.bg-silver</div>
+  <div class="pa3 bg-gainsboro text-white">.bg-gainsboro</div>
+  <div class="pa3 bg-white-smoke text-white">.bg-white-smoke</div>
+  <div class="pa3 bg-white-smoke-xd text-white">.bg-white-smoke-xd</div>
+  <div class="pa3 bg-white text-nubel">.bg-white</div>
+  <div class="pa3 bg-persian-red text-white">.bg-persian-red</div>
+  <div class="pa3 bg-cinnabar text-white">.bg-cinnabar</div>
+  <div class="pa3 bg-red text-white">.bg-red</div>
+  <div class="pa3 bg-pelorous text-white">.bg-pelorous</div>
+  <div class="pa3 bg-denim text-white">.bg-denim</div>
+  <div class="pa3 bg-cerulean text-white">.bg-cerulean</div>
+  <div class="pa3 bg-zircon text-white">.bg-zircon</div>
+  <div class="pa3 bg-dark-cerulean  text-white">.bg-dark-cerulean </div>
+  <div class="pa3 bg-navy-blue text-white">.bg-navy-blue</div>
+  <div class="pa3 bg-kelly-green text-white">.bg-kelly-green</div>
+</div>
+
+<p class="mt3">Hover states</p>
+<div class="pa3 bg-gainsboro text-white hover-bg-red inline-block">.hover-bg-red</div>
+
+`*-nm` breakpoints is availbale for this set of classes.
+
+*/
+// stylelint-enable
+
+@import './_colors.scss';
+@import './_breakpoints.scss';
+
+@each $name, $color in $colors {
+  .#{'bg-'+$name} {
+    background-color: #{$color};
+  }
+
+  .#{'hover-bg-'+$name} {
+    &:hover,
+    &:active {
+      background-color: #{$color};
+    }
+  }
+}
+
+@each $name, $color in $colors {
+  @include nm(bg-#{$name}) {
+    background-color: #{$color};
+  }
+}
+
+// Used to Darken images
+$filters: (
+  '40': 40%
+);
+
+@each $name, $value in $filters {
+  .filter-brightness#{$name} {
+    filter: brightness(#{$value});
+  }
+}

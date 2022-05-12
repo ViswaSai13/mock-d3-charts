@@ -1,0 +1,39 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: z-index
+name: z-index
+category: z-index
+---
+## z-Index
+z-index values: 0, 1, 10, 20, 30, 40, 50, 999  
+`z0, z1, z10, etc`  
+
+Special cases: max (2147483647), inherit, initial  
+`z-max, z-inherit, z-initial`
+
+*/
+// stylelint-enable
+
+$zs: (
+  0: 0,
+  1: 1,
+  10: 10,
+  20: 20,
+  30: 30,
+  40: 40,
+  50: 50,
+  999: 999,
+  10000: 10000,
+  10001: 10001,
+  '-max': 2147483647,
+  '-inherit': inherit,
+  '-initial': initial
+);
+
+@each $name, $value in $zs {
+  .z#{$name} {
+    z-index: #{$value};
+  }
+}

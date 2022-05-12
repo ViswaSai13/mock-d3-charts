@@ -1,0 +1,91 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: display
+name: display
+category: display
+---
+## display
+
+<div>
+  <div class="block">.block</div>
+  <div class="block">.block</div>
+</div>
+
+<div>
+  <div class="inline-block">.inline-block</div>
+  <div class="inline-block">.inline-block</div>
+</div>
+
+<div>
+  <div class="inline">.inline</div>
+  <div class="inline">.inline</div>
+</div>
+
+<div class="mb3">
+  <div class="inline inline-block-tb block-dk">.inline .inline-block-tb .block-dk</div>
+  <div class="inline inline-block-tb block-dk">.inline .inline-block-tb .block-dk</div>
+</div>
+
+## Visibilites
+Visibility classes are also available. This uses the visiblity proptery. Availabble `.visibility-v` for visible or `visibility-h` for hidden.  
+
+*/
+// stylelint-enable
+
+@import './_breakpoints.scss';
+
+$displays: (
+  block: block,
+  inline-block: inline-block,
+  inline: inline,
+  flex: flex,
+  none: none
+);
+
+@each $name, $val in $displays {
+  .#{$name} {
+    display: #{$val};
+  }
+}
+
+@each $name, $val in $displays {
+  @include nm(#{$name}) {
+    display: #{$val};
+  }
+}
+
+@each $name, $val in $displays {
+  @include tb(#{$name}) {
+    display: #{$val};
+  }
+}
+
+@each $name, $val in $displays {
+  @include dk(#{$name}) {
+    display: #{$val};
+  }
+}
+@each $name, $val in $displays {
+  @include mob(#{$name}) {
+    display: none;
+  }
+}
+
+@each $name, $val in $displays {
+  @include less-device(#{$name}) {
+    display: none;
+  }
+}
+
+$visibilities: (
+  v: visible,
+  h: hidden
+);
+
+@each $name, $value in $visibilities {
+  .visibility-#{$name} {
+    visibility: #{$value};
+  }
+}

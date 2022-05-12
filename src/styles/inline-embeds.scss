@@ -1,0 +1,390 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: Inline Embeds
+name: inline-embeds
+category: Inline Embeds
+description: This handles all template inline-embeds. Including images/text within articles and model pages, etc.
+---
+*/
+// stylelint-enable
+
+@import './_colors.scss';
+@import './_breakpoints.scss';
+@import './_font-vars.scss';
+
+.link-styling {
+  a {
+    color: $denim;
+    cursor: pointer;
+    text-decoration: none;
+    text-shadow: none;
+    box-shadow: inset 0 -2px 0 0 $white, inset 0 -3px 0 0 $white;
+    transition: all 0.2s ease-in-out;
+
+    &:hover,
+    &:active {
+      color: $denim;
+      cursor: pointer;
+      text-shadow: 2px 1px 0 $white, -2px 1px 0 $white, -2px 0 0 $white, 2px 0 0 $white;
+      box-shadow: inset 0 -1px 0 0 $white, inset 0 -2px 0 0 $denim;
+    }
+  }
+}
+
+.embedded-links {
+  p {
+    padding: 1rem 0;
+    margin-bottom: 0;
+
+    @extend .link-styling;
+  }
+
+  ul > li {
+    @extend .link-styling;
+  }
+}
+
+// embedded article styles
+.embedded-article {
+  @extend .embedded-links;
+
+  .embedded-highs-and-lows {
+    @include mobile {
+      margin: -1.25rem 1.25rem;
+    }
+  }
+
+  img {
+    max-width: 100%;
+
+    @include tablet {
+      max-width: 25rem;
+    }
+  }
+
+  // all .inline-image elements
+  .inline-image {
+    display: inline-block;
+    margin: 1rem 0;
+
+    // Target captions if they exist.
+    figcaption:not(:empty),
+    .inline-caption:not(:empty) {
+      padding: 0 20px 16px;
+
+      @include not-mobile {
+        padding: initial;
+      }
+    }
+  }
+
+  // 'Tested' and 'Save the Manuals' images
+  .inline-image.right {
+    float: right;
+  }
+
+  // main images with gallery
+  a {
+    .inline-image.center {
+      @include mobile {
+        margin: 0 -1.25rem;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+        padding: 0;
+
+        @include not-mobile {
+          width: auto;
+        }
+
+        @include tablet {
+          max-width: 400px;
+        }
+
+        @include desktop {
+          margin-right: auto;
+        }
+
+        filter: brightness(100%);
+        transition: filter 0.2s ease-in;
+
+        &:hover,
+        &:active,
+        &:focus {
+          filter: brightness(115%);
+        }
+      }
+    }
+  }
+
+  a,
+  figure {
+    figcaption,
+    .inline-caption {
+      font-family: $font-family-sserif-2;
+      font-size: 0.8rem;
+      font-weight: normal;
+      margin-top: 8px;
+      line-height: 1.125rem;
+      font-weight: 100;
+      color: $nubel;
+
+      @include mobile {
+        padding: 1rem 1.25rem 0;
+      }
+    }
+  }
+
+  // remove top padding if first child element is an image (typically means its in place of primary image)
+  & > .inline-image:first-child {
+    img {
+      padding-top: 0;
+    }
+  }
+
+  // Video positioning / styling (56% creates the correct ratio)
+  .video-embed {
+    display: block !important;
+    position: relative;
+    padding-bottom: 56%;
+    margin: 1rem 0 !important;
+
+    iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  h3 {
+    color: $black;
+    font-size: 1.5rem;
+    font-family: $font-family-sserif;
+    letter-spacing: -0.025rem;
+    line-height: 1.5rem;
+    padding: 0.5rem 0;
+  }
+}
+
+// article template styles
+.embedded-article-article {
+  @extend .embedded-article;
+
+  /* Styling for the "From the {x} Issue of Car and Driver", this is a bit tricky to style, so we are trying to limit how
+   * much we can possibly target. the attempt is to target the first image inside of the first div only, if it accidentally
+   * targets a different image besides the C/D icon, it will more than likely not affect it too much, this shouldn't be too
+   * big of a concern. spot checked about 20 articles and saw zero issues with targeting the wrong div.
+   */
+  & > span:first-of-type {
+    & > span:first-of-type {
+      & > div:first-of-type:not(.row) {
+        margin: 0;
+
+        .inline-image {
+          padding: 0;
+          margin: 0;
+
+          img {
+            padding: 0;
+            margin: 0;
+            width: auto;
+            height: auto;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+  .outerDiv {
+    position: relative;
+    width: 100%;
+  }
+
+  .isScrollable {
+    .fade {
+      right: 0;
+      top: 0;
+      width: 50px;
+      height: 96%;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 100%);
+      position: absolute;
+      -webkit-animation: fadeIn 1s;
+      animation: fadeIn 1s;
+    }
+  }
+  .overflowMe {
+    overflow-x: scroll;
+    width: 100%;
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+      -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  .pullquote {
+    text-align: center;
+    margin: 2rem 0 0;
+
+    .pullquote-body {
+      display: block;
+      margin-bottom: 2.5rem;
+      font-size: 1.375rem;
+      font-style: italic;
+      line-height: 1.875rem;
+    }
+
+    .pullquote-left,
+    .pullquote-right {
+      vertical-align: middle;
+      font-size: 5rem;
+      line-height: 0;
+    }
+  }
+}
+
+// model template styles
+.embedded-article-model {
+  @extend .embedded-article;
+}
+
+// 'Specifications' styles
+.article_sidebar {
+  .wrapper {
+    color: $black;
+
+    h4 {
+      font-size: 1.5rem;
+      font-family: $font-family-sserif;
+      letter-spacing: -0.025rem;
+      line-height: 1.5rem;
+      padding: 1rem 0;
+
+      span {
+        display: none;
+      }
+    }
+
+    p {
+      font-family: $font-family-sserif-2;
+      color: $night-rider;
+      font-weight: 100;
+      line-height: 1.375em;
+      font-size: 0.875rem;
+      padding: 0.25rem 0;
+
+      b,
+      strong {
+        font-family: $font-family-sserif;
+        color: $black;
+        font-weight: bold;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+// Lease/Finance component
+
+#dt-lease-finance-div {
+  .paymentWidgetRowLabel {
+    padding-top: 0.75rem;
+
+    .paymentWidgetRowLabelText {
+      color: $dark-grey;
+      font-family: $font-family-sserif-2;
+      font-size: 0.688rem;
+      text-transform: uppercase;
+    }
+
+    // #drsw0_drs_paymentWidget_lease_help,
+    // #drsw0_drs_paymentWidget_finance_help,
+    // .PaymentWidgetRowHelpIcon {
+    //   // background-image: url('../images/icon-info.svg');
+    // }
+  }
+
+  .paymentWidgetContainer {
+    cursor: inherit;
+  }
+
+  .paymentWidgetLoadingWrapper,
+  .paymentWidgetContainer {
+    text-align: left;
+  }
+
+  .paymentWidgetContainer {
+    .paymentWidgetRow {
+      text-align: left;
+    }
+  }
+
+  .paymentWidgetRowValueText {
+    font-family: $font-family-sserif;
+    color: $nero;
+    font-size: 1rem;
+    line-height: 1rem;
+    padding-right: 1rem;
+
+    #drsw0_drs_paymentWidget_lease_value,
+    #drsw0_drs_paymentWidget_finance_value {
+      font-family: $font-family-sserif;
+      color: $black;
+      font-size: 2.125rem;
+      letter-spacing: -0.025rem;
+      line-height: 2.125rem;
+    }
+  }
+  .paymentWidgetLoadingText,
+  .paymentWidgetRowValueText {
+    font-weight: bold;
+  }
+  .paymentWidgetSmall {
+    .paymentWidgetRow {
+      padding: 0 5px;
+    }
+  }
+
+  .paymentWidgetDivider {
+    display: none;
+  }
+}
+
+#makeOverview {
+  a {
+    color: $denim;
+    cursor: pointer;
+    text-decoration: none;
+    text-shadow: none;
+    box-shadow: inset 0 -2px 0 0 $white, inset 0 -3px 0 0 $white;
+    transition: all 0.2s ease-in-out;
+
+    &:hover,
+    &:active {
+      color: $denim;
+      cursor: pointer;
+      text-shadow: 2px 2px 0 $white, -2px 2px 0 $white, 3px 0 0 $white, -3px 0 0 $white;
+      box-shadow: inset 0 -2px 0 0 $white, inset 0 -3px 0 0 $denim;
+    }
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

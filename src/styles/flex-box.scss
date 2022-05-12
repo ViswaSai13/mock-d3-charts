@@ -1,0 +1,339 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: flex box
+name: flex box
+category: flex box
+---
+## flex box
+[Good intro on Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+Alternative layout classes using flexbox
+`.flex`, `.flex-nm`
+Aligns items in a row
+<div class="flex mb4 bg-white-smoke">
+  <div class="bg-silver">div 1</div>
+  <div class="bg-gainsboro">div 2</div>
+</div>
+`.flex flex-col`, `.flex-col-nm`
+<div class="flex flex-col mb4 bg-white-smoke">
+  <div class="bg-silver">div 1</div>
+  <div class="bg-gainsboro">div 2</div>
+</div>
+`.flex-grow`
+Add flex-grow to a column to expand and fill the available space.
+Alternatively: `flex-no-grow` to disable expansion.
+<div class="flex mb4 bg-white-smoke">
+  <div class="flex-grow bg-silver">div 1 .flex-grow</div>
+  <div class="bg-gainsboro">div 2</div>
+</div>
+`.flex-shrink`
+Add flex-shrink to a column to shrink and make more space available
+Alternatively: flex-no-shrink to disable shrinking.
+<div class="flex mb4 bg-white-smoke">
+  <div class="flex-shrink bg-silver">div 1 .flex-shrink</div>
+  <div class="bg-gainsboro">div 2</div>
+</div>
+Also available: .flex-nowrap, .flex-basis0, .flex-basis-content, and .flex-wrap, .justify-content-end.
+`.justify-*`
+Aligns child elements  along x axis
+`justify-end | justify-center | justify-between`
+`.justify-center`
+<div class="flex justify-center mb4 bg-white-smoke">
+  <div class="bg-silver">div 1</div>
+  <div class="bg-gainsboro">div 2</div>
+</div>
+`.justify-between`
+<div class="flex justify-between mb4 bg-white-smoke">
+  <div class="bg-silver">div 1</div>
+  <div class="bg-gainsboro">div 2</div>
+</div>
+`.align-items-*`
+Aligns child elements along y axis *(note these get switched when using flex-col)*
+`align-items-end | align-items-center`
+`.align-items-center`
+<div class="flex align-items-center mb4 bg-white-smoke h80">
+  <div class="bg-silver">div 1</div>
+  <div class="bg-gainsboro">div 2</div>
+</div>
+`.align-items-end`
+<div class="flex align-items-end mb4 bg-white-smoke h80">
+  <div class="bg-silver">div 1</div>
+  <div class="bg-gainsboro">div 2</div>
+</div>
+Other flexbox classes:
+`.flex-basis0` - flex-basis: 0
+`.flex-wrap` flex-wrap: wrap
+`.flex-nowrap` flex-wrap: no-wrap
+`.flex-row` flex-flow: row
+*/
+// stylelint-enable
+
+@import './_breakpoints.scss';
+
+/* Rows & Columns */
+.flex-row {
+  flex-flow: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-flow: column;
+}
+
+@include nm('flex-row') {
+  flex-flow: row;
+}
+
+@include tb('flex-col') {
+  flex-flow: column;
+}
+
+@include nm('flex-col') {
+  flex-flow: column;
+}
+
+@include dk('flex-row') {
+  flex-flow: row;
+}
+
+@include mob('flex-col') {
+  flex-flow: column;
+}
+
+@include less-device('flex-col') {
+  flex-flow: column;
+}
+
+@include bt-mob-dk('flex-row') {
+  flex-flow: row;
+}
+
+@include bt-mob-dk('flex-col') {
+  flex-flow: column;
+}
+
+/* Grow & Shrink */
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.flex-shrink {
+  flex-shrink: 1;
+}
+
+.flex-no-grow {
+  flex-grow: 0;
+}
+
+.flex-no-shrink {
+  flex-shrink: 0;
+}
+
+// When we need flex to be avaialble on one medium rather than the other.
+@include tb(flex-grow-none) {
+  flex-grow: 0;
+}
+
+@include dk(flex-grow-none) {
+  flex-grow: 0;
+}
+
+.flex-shrink-none {
+  flex-shrink: 0;
+}
+
+.flex-basis-content {
+  flex-basis: content;
+}
+
+.flex-basis0 {
+  flex-basis: 0;
+}
+
+@include mob(order) {
+  order: 1;
+}
+
+@include less-device(order) {
+  order: 1;
+}
+/* Wrap */
+
+.flex-nowrap {
+  flex-wrap: nowrap !important;
+}
+
+.flex-wrap {
+  flex-wrap: wrap !important;
+}
+
+@include dk(flex-nowrap) {
+  flex-wrap: nowrap;
+}
+
+@include tb(flex-wrap) {
+  flex-wrap: wrap;
+}
+
+@include mob(flex-wrap) {
+  flex-wrap: wrap;
+}
+
+@include less-device(flex-wrap) {
+  flex-wrap: wrap;
+}
+
+@include mob('flex') {
+  flex-flow: row;
+}
+
+@include less-device('flex') {
+  flex-flow: row;
+}
+
+
+@include mob('flex-col') {
+  flex-flow: column;
+}
+
+@include less-device('flex-col') {
+  flex-flow: column;
+}
+
+@include dk(flex-nowrap) {
+  flex-wrap: nowrap;
+}
+
+/* Justify Content */
+
+$justifies: (justify-end: flex-end,
+  justify-center: center,
+  justify-between: space-between,
+  justify-around: space-around,
+  justify-evenly: space-evenly);
+
+@each $name,
+$val in $justifies {
+  .#{$name} {
+    justify-content: #{$val};
+  }
+}
+
+@each $name,
+$val in $justifies {
+  @include nm(#{$name}) {
+    justify-content: #{$val};
+  }
+}
+
+@each $name,
+$val in $justifies {
+  @include tb(#{$name}) {
+    justify-content: #{$val};
+  }
+}
+
+@each $name,
+$val in $justifies {
+  @include dk(#{$name}) {
+    justify-content: #{$val};
+  }
+}
+
+@each $name,
+$val in $justifies {
+  @include mob(#{$name}) {
+    justify-content: #{$val};
+  }
+}
+@each $name,
+$val in $justifies {
+  @include less-device(#{$name}) {
+    justify-content: #{$val};
+  }
+}
+
+/* Align Items */
+
+$aligns: (align-items-end: flex-end,
+  align-items-start: flex-start,
+  align-items-center: center,
+  align-stretch: stretch,
+  align-base-line: baseline);
+
+@each $name,
+$val in $aligns {
+  .#{$name} {
+    align-items: #{$val};
+  }
+}
+
+@each $name,
+$val in $aligns {
+  @include nm(#{$name}) {
+    align-items: #{$val};
+  }
+}
+
+@each $name,
+$val in $aligns {
+  @include tb(#{$name}) {
+    align-items: #{$val};
+  }
+}
+
+@each $name,
+$val in $aligns {
+  @include dk(#{$name}) {
+    align-items: #{$val};
+  }
+}
+
+@each $name,
+$val in $aligns {
+  @include mob(#{$name}) {
+    align-items: #{$val};
+  }
+}
+
+@each $name,
+$val in $aligns {
+  @include less-device(#{$name}) {
+    align-items: #{$val};
+  }
+}
+
+$align-self: (align-self-end: flex-end,
+  align-self-start: flex-start,
+  align-self-center: center,
+);
+
+@each $name,
+$val in $align-self {
+  .#{$name} {
+    align-self: #{$val};
+  }
+}
+
+@each $name,
+$val in $align-self {
+  @include nm(#{$name}) {
+    align-self: #{$val};
+  }
+}
+
+@each $name,
+$val in $align-self {
+  @include tb(#{$name}) {
+    align-self: #{$val};
+  }
+}
+
+@each $name,
+$val in $align-self {
+  @include dk(#{$name}) {
+    align-self: #{$val};
+  }
+}

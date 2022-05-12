@@ -1,0 +1,230 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: Code Styles
+name: code-styles
+category: code-styles
+order: 1
+---
+## Code Styleguide
+
+Coding best practices and team conventions not covered by our linter.
+
+Also be sure to reference [the official Angular2 style guide](https://angular.io/styleguide) for tons more information on how to write good Angular2 code.
+
+<br class="mt3">
+### Break multiple attritbutes into new lines
+***
+Bad
+```
+<div *ngIf="active" class="text-blue"></div>
+```
+
+Good
+```
+<div
+  *ngIf="active"
+  class="text-blue">
+</div>
+```
+
+<br class="mt3">
+### Use ? when referencing obj that is loaded async like an observable
+***
+```
+**component.ts**
+this.modelsService
+  .getByMakeModel('ford', 'f-150')
+  .subscribe( (response) => this.model = response );
+```
+
+Bad
+```
+<div>{{model.name}}</div>
+```
+
+Good
+```
+<div>{{model?.name}}</div>
+```
+
+<br class="mt3">
+### Don't use jsdoc comments when tsdoc will pick it up from the typescript
+*the '.' in the comments below are just there to avoid a compiling bug*
+***
+Bad
+```
+/**
+ * Description of function
+ * @param {string} input
+ *./
+ functionName(input: string) {}
+```
+
+Good
+```
+/**
+ * Description of function
+ *./
+ functionName(input: string) {}
+```
+
+<br class="mt3">
+### Always include types in your typescript files whenever possible.
+*Embracing the type system increases the stability and predictability of our code.*
+***
+Bad
+```
+myFunction(value, index) {
+  // do something...
+  return myVal;
+}
+```
+
+Good
+```
+myFunction(value: string, index: number): someType {
+  // do something...
+  return myVal as someType;
+}
+```
+
+<br class="mt3">
+### Use ES6 methods whenever possible
+***
+[ES6 Cheatsheet](https://github.com/DrkSephy/es6-cheatsheet)
+[ES6 Lodash equivalents ](https://github.com/cht8687/You-Dont-Need-Lodash-Underscore#_each)
+
+<br class="mt3">
+### Always use parentheses around params
+***
+Bad
+```
+this.makesService.get().subscribe( makes => this.makes = makes );
+```
+Good
+```
+this.makesService.get().subscribe( (makes) => this.makes = makes );
+```
+
+<br class="mt3">
+### Use `*-nm` breakpoint class instead of `*-tb *-dk`. Put mobile classes first.
+***
+Bad
+```
+<div class="col-24-tb col-24-dk col-19">
+```
+Good
+```
+<div class="col-19 col-24-nm"></div>
+```
+
+<br class="mt3">
+### Always use double quotes around html attributes
+***
+Bad
+```
+<div class='mt6' [article]='article'>
+```
+Good
+```
+<div class="mt6" [article]="article">
+```
+
+<br class="mt3">
+### Initialize class properties in the constructor
+*This is also to avoid tslint no-unused-variable errors since there's not good way for tslint to know the icon is used in the template*
+***
+Bad
+```
+private icons = STYLE_ICONS; // throws no-unused-variable lint error
+```
+Good
+```
+private icons = Array<any>;
+constructor() {
+  this.icons = STYLE_ICONS;
+}
+```
+If we want the option to pass in icons with a default value
+```
+private icons = Array<any>;
+constructor(icons: Array<any> = STYLE_ICONS) {
+  this.icons = icons;
+}
+```
+
+<br class="mt3">
+### Include import lists in alphabetical order for easy scanning.
+***
+Bad
+```
+import {
+  DashlessPipe,
+  AllCapsPipe,
+  HttpConnectorService
+} from 'shared';
+```
+Good
+```
+import {
+  AllCapsPipe,
+  DashlessPipe,
+  HttpConnectorService
+} from 'shared';
+```
+
+<br class="mt3">
+### Always pair open and closing brackets on arrays of objects to reduce code clutter.
+***
+Bad
+```
+const fooArray = [
+  {
+    someProp: 'myVal',
+    bar: 'baz'
+  },
+  {
+    someProp: 'myVal',
+    bar: 'baz'
+  }
+];
+```
+Good
+```
+const fooArray = [{
+  someProp: 'myVal',
+  bar: 'baz'
+}, {
+  someProp: 'myVal',
+  bar: 'baz'
+}];
+```
+
+<br class="mt3">
+### Avoid relative-path imports when possible
+
+*This helps us maintain clean, readable code*
+
+* Prefer not to refer to components via directory traversal, instead rely on module resolution.
+* Prefer not to name components directly, instead rely on the barreling files.
+* Prefer not to name the barreling file directly, instead only include the directory name.
+
+***
+
+Bad
+
+```
+import { MySharedComponent } from '../../shared/my-shared/my-shared.component'
+import { MySharedService } from '../../shared/my-shared/index'
+```
+
+Good
+
+```
+import { MySharedComponent, MySharedService } from './shared'
+```
+
+*/
+// stylelint-enable

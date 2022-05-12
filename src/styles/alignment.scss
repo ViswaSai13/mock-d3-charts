@@ -1,0 +1,172 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: alignment
+name: alignment
+category: alignment
+---
+## alignment
+
+### Lost CSS alignments
+
+Add alignment classes to .col-\*
+`middle-center | middle-left | top-right`
+
+<div class="row h80 mb1">
+  <div class="col-24 middle-left bg-silver">
+    <div class="h50 w200 bg-white-smoke">.col-24 .middle-left</div>
+  </div>
+</div>
+
+<div class="row h80 mb3">
+  <div class="col-24 middle-left middle-center-dk bg-silver">
+    <div class="h50 w200 bg-white-smoke">.col-24 .middle-left .middle-center-dk</div>
+  </div>
+</div>
+
+Use `.ma-auto` or `.center` to center with margin-left/margin-right: auto.
+
+<div class="row mb3">
+  <div class="col-24 bg-silver">
+    <div class="h50 w200 bg-white-smoke ma-auto">.ma-auto</div>
+  </div>
+</div>
+
+### Vertical align
+
+Use `valign-*` - top | middle | bottom
+
+Example:
+
+<span class="pos-rel">
+  <span class="valign-top">.valign-top</span>
+  <span class="valign-middle">.valign-middle</span>
+  <span class="valign-bottom">.valign-bottom</span>
+</span>
+
+### Text Align
+
+<div class="text-left">.text-left</div>
+<div class="text-center">.text-center</div>
+<div class="text-right">.text-right</div>
+
+*/
+// stylelint-enable
+
+@import './_breakpoints.scss';
+
+/* Margin Auto Center */
+
+.ma-auto,
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row::after,
+.row::before {
+  width: 100%;
+}
+
+// IE version of flex
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .max-width-site-nm {
+    &.flex-ie {
+      display: flex;
+      display: -ms-flex;
+    }
+  }
+}
+
+/* Lost CSS alignments */
+// see https://github.com/peterramsing/lost#centering-elements for full list
+
+$alignments: (
+  middle-center,
+  middle-left,
+  top-right
+);
+
+@each $alignment in $alignments {
+  .#{$alignment} {
+    height: 100%;
+    lost-align: #{$alignment};
+  }
+}
+
+@each $alignment in $alignments {
+  @include tb(#{$alignment}) {
+    height: 100%;
+    lost-align: #{$alignment};
+  }
+}
+
+@each $alignment in $alignments {
+  @include dk(#{$alignment}) {
+    height: 100%;
+    lost-align: #{$alignment};
+  }
+}
+
+@each $alignment in $alignments {
+  @include nm(#{$alignment}) {
+    height: 100%;
+    lost-align: #{$alignment};
+  }
+}
+
+/* Vertical Alignments */
+
+$verticalAlignments: (
+  top: top,
+  middle: middle,
+  bottom: bottom,
+  sub: sub
+);
+
+@each $name, $val in $verticalAlignments {
+  .valign-#{$name} {
+    vertical-align: $val;
+  }
+
+  /* responsive versions */
+  @include tb(valign-#{$name}) {
+    vertical-align: $val;
+  }
+
+  @include dk(valign-#{$name}) {
+    vertical-align: $val;
+  }
+
+  @include nm(valign-#{$name}) {
+    vertical-align: $val;
+  }
+}
+
+/* Text Alignments */
+
+$textAlignments: (
+  left: left,
+  center: center,
+  right: right
+);
+
+@each $name, $val in $textAlignments {
+  .text-#{$name} {
+    text-align: $val;
+  }
+
+  /* responsive versions */
+  @include tb(text-#{$name}) {
+    text-align: $val;
+  }
+
+  @include dk(text-#{$name}) {
+    text-align: $val;
+  }
+
+  @include nm(text-#{$name}) {
+    text-align: $val;
+  }
+}

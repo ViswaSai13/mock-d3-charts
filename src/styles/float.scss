@@ -1,0 +1,59 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: float
+name: float
+category: float
+---
+## float
+
+*Avoid using when possible*  
+
+<div class="h24">
+  <div class="f-left">.f-left</div>
+</div>
+
+<div class="h24">
+  <div class="f-right">.f-right</div>
+</div>
+
+<div class="h24">
+  <div class="f-left f-right-dk">.f-left .f-right-dk</div>
+</div>
+
+*/
+// stylelint-enable
+
+@import './_breakpoints.scss';
+
+// @todo remove when we can. used in header and photo gallery icon right now
+
+$floats: (
+  f-left: left,
+  f-right: right
+);
+
+@each $name, $val in $floats {
+  .#{$name} {
+    float: #{$val};
+  }
+}
+
+// Floats Tablet
+@each $name, $val in $floats {
+  @include tb(#{$name}) {
+    float: #{$val};
+  }
+}
+
+// Floats Desktop
+@each $name, $val in $floats {
+  @include dk(#{$name}) {
+    float: #{$val};
+  }
+}
+
+.clear-fix {
+  clear: both;
+}

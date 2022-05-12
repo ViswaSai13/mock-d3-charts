@@ -1,0 +1,241 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: States
+name: states
+category: states
+---
+## States
+
+<div class="text-white h50 w160 bg-silver hover-bg-red mb3">.hover-bg-red</div>
+
+<div class="text-nubel hover-text-red mb3">.hover-text-red</div>
+
+<div class="pa3 h50 w160 border-all border-black hover-border-red button mb3">.hover-border-red</div>
+
+<div class="button w160 h50 bg-white-smoke dim mt2 mb3">.dim</div>
+
+### Opacities
+`.opacity*`, `.hover-opacity*`    
+e.g. 0, 50, 1  
+<div class="button w160 h50 bg-white-smoke opacity50 mt2 mb3">.opacity50</div>
+
+### Transitions
+ 
+#### Properties
+`.tr-all`  
+`.tr-opacity`  
+`.tr-top`  
+`.tr-left`  
+
+#### Duration
+`.trd-3` 0.3s  
+`.trd-4` 0.4s  
+`.trd-5` 0.5s  
+
+#### Timing Functions
+`.tr-ease-in`
+ 
+<div class="button w500 h50 bg-white-smoke opacity50 hover-opacity1 tr-opacity trd-4 trt-ease-in mt2 mb3">.opacity50 .hover-opacity1 tr-opacity trd-4 trt-ease-in</div>
+
+When transition using a component property, e.g  
+`[class.active]="opacity1"`  
+opacity50 will override override opacity1 since it's defined later in the css.  
+To work around this use `i` at the end of the class, e.g. `.opacity1i`  
+
+### Rotate
+`.rotate*`  
+e.g. `90`, `-90`  
+<div class="button w80 h50 bg-white-smoke mt2 mb7 rotate90">.rotate90</div>
+<div class="button w80 h50 bg-white-smoke mt2 mb3 rotate-90">.rotate-90</div>
+
+
+### Fade Away
+`.fade-away-l`, `.fade-away-r`, `.fade-away-h`, `.fade-button-away-r`  
+Overlays the element with a horizontal fade at the right or left edge.  
+Used for overflowing copy on articles titles, related article filters, etc  
+Fade away button is a special case that adds top and bottom border to the fade. Used with year selector.  
+<div class="button w160 h50 bg-white-smoke mt2 mb3 fade-away-l pos-rel">.fade-away-l</div>
+<div class="button w160 h50 bg-white-smoke mt2 mb3 fade-away-r pos-rel">.fade-away-r</div>
+<div class="button w160 h50 bg-white-smoke mt2 mb3 fade-away-h pos-rel">.fade-away-h</div>
+<div class="button w160 h50 bg-white-smoke mt2 mb3 fade-button-away-r pos-rel">.fade-button-away-h</div>
+
+*/
+// stylelint-enable
+
+@import './colors.scss';
+
+// Colors for Hover Background Color
+@each $class, $color in $colors {
+  .hover-bg-#{$class} {
+    &:hover,
+    &:active {
+      background-color: #{$color};
+    }
+  }
+}
+
+// Colors for Hover text Color
+@each $class, $color in $colors {
+  .hover-text-#{$class} {
+    &:hover,
+    &:active {
+      color: #{$color};
+    }
+  }
+}
+
+// Colors for Hover Border Color
+@each $class, $color in $colors {
+  .hover-border-#{$class} {
+    &:hover,
+    &:active {
+      border-color: #{$color};
+    }
+  }
+}
+
+/* Transitions */
+
+.tr-opacity {
+  transition-property: opacity;
+}
+
+.tr-all {
+  transition-property: all;
+}
+
+.tr-top {
+  transition-property: top;
+}
+
+.tr-left {
+  transition-property: left;
+}
+
+.trd-3 {
+  transition-duration: 0.3s;
+}
+
+.trd-4 {
+  transition-duration: 0.4s;
+}
+
+.trd-5 {
+  transition-duration: 0.5s;
+}
+
+.trd-6 {
+  transition-duration: 0.6s;
+}
+
+.trd-9 {
+  transition-duration: 0.9s;
+}
+
+.trt-ease-in {
+  transition-timing-function: ease-in;
+}
+
+/* Rotations */
+
+.rotate90 {
+  transform: rotate(90deg);
+}
+
+.rotate-90 {
+  transform: rotate(-90deg);
+}
+
+.rotate180 {
+  transform: rotate(180deg);
+}
+
+/* Dim */
+
+.dim {
+  opacity: 1;
+  transition: opacity 0.15s ease-in;
+
+  &:hover,
+  &:focus {
+    opacity: 0.5;
+    transition: opacity 0.15s ease-in;
+  }
+
+  &:active {
+    opacity: 0.8;
+    transition: opacity 0.15s ease-out;
+  }
+}
+
+/* Opacity */
+
+$opacities: (
+  0: 0,
+  50: 0.5,
+  1: 1
+);
+
+@each $name, $value in $opacities {
+  .opacity#{$name} {
+    opacity: #{$value};
+  }
+}
+
+// workaround to add heirarchy, e.g. opacity0i trumps opacity1
+@each $name, $value in $opacities {
+  .opacity#{$name}i {
+    opacity: #{$value};
+  }
+}
+
+@each $name, $value in $opacities {
+  .hover-opacity#{$name}:hover {
+    opacity: #{$value};
+  }
+}
+
+.fade-away-r {
+  &::after {
+    content: '';
+    width: 4rem;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: linear-gradient(to right, transparent, white);
+  }
+}
+
+.fade-away-l {
+  &::before {
+    content: '';
+    width: 1.25rem;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: linear-gradient(to left, transparent, white);
+  }
+}
+
+.fade-away-h {
+  @extend .fade-away-r;
+  @extend .fade-away-l;
+}
+
+.fade-button-away-r {
+  @extend .fade-away-r;
+  &::after {
+    box-sizing: border-box;
+    border-top: solid 1px #eaeaea;
+    border-bottom: solid 1px #eaeaea;
+  }
+}
+
+// Creates Pointer
+.pointer {
+  cursor: pointer;
+}

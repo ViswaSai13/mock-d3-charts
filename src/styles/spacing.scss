@@ -1,0 +1,271 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: Spacing
+name: spacing
+category: Spacing
+---
+## Spacing
+Scale based classes
+All classes use `box-sizing: border-box` by default
+Shortcut class names:
+* pa\* - top, bottom, left, right
+* ph\* - left, right
+* pv\* - top, bottom
+Scale:
+- 0: 0
+- 1: .25rem (4px)
+- 2: .5rem (8px)
+- 3: .75rem (12px)
+- 4: 1rem (16px)
+- 5: 1.5rem (24px)
+- 6: 2rem (32px)
+- 7: 3rem (48px)
+- 8: 3.75rem (60px)
+- 9: 4.5rem (72px)
+### Spacing scales
+<div class="row waf-12 waf-6-tb waf-3-dk">
+  <div class="bg-nero"><div class="bg-dim-grey pa0 h50"><div class="bg-white-smoke middle-center">.pa0</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey pa1 h50"><div class="bg-white-smoke middle-center">.pa1</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey pa2 h50"><div class="bg-white-smoke middle-center">.pa2</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey pa3 h50"><div class="bg-white-smoke middle-center">.pa3</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey ma0 h50"><div class="bg-white-smoke middle-center">.ma0</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey ma1 h50"><div class="bg-white-smoke middle-center">.ma1</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey ma2 h50"><div class="bg-white-smoke middle-center">.ma2</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey ma3 h50"><div class="bg-white-smoke middle-center">.ma3</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey pa0 ma0 h50"><div class="bg-white-smoke middle-center">.pa0 .ma0</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey pa1 ma1 h50"><div class="bg-white-smoke middle-center">.pa1 .ma1</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey pa2 ma2 h50"><div class="bg-white-smoke middle-center">.pa2 .ma2</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey pa3 ma3 h50"><div class="bg-white-smoke middle-center">.pa3 .ma3</div></div></div>
+</div>
+### Spacing direction
+<div class="row waf-12 waf-6-tb waf-3-dk mt2">
+  <div class="bg-nero"><div class="bg-dim-grey pt2 h50"><div class="bg-white-smoke middle-center">.pt2</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey pr2 h50"><div class="bg-white-smoke middle-center">.pr2</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey pb2 h50"><div class="bg-white-smoke middle-center">.pb2</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey pl2 h50"><div class="bg-white-smoke middle-center">.pl2</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey pa2 h50"><div class="bg-white-smoke middle-center">.pa2</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey pv2 h50"><div class="bg-white-smoke middle-center">.pv2</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey ph2 h50"><div class="bg-white-smoke middle-center">.ph2</div></div></div>
+</div>
+<div class="row waf-12 waf-6-tb waf-3-dk">
+  <div class="bg-nero"><div class="bg-dim-grey mt2 h50"><div class="bg-white-smoke middle-center">.mt2</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey mr2 h50"><div class="bg-white-smoke middle-center">.mr2</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey mb2 h50"><div class="bg-white-smoke middle-center">.mb2</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey ml2 h50"><div class="bg-white-smoke middle-center">.ml2</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey ma2 h50"><div class="bg-white-smoke middle-center">.ma2</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey mv2 h50"><div class="bg-white-smoke middle-center">.mv2</div></div></div>
+  <div class="bg-nero"><div class="bg-dim-grey mh2 h50"><div class="bg-white-smoke middle-center">.mh2</div></div></div>
+</div>
+### Spacing Responsive
+<div class="row bg-nero mt2 pa0 pa2-tb pa4-dk">
+  <div class="col-24 h50 bg-white-smoke">.pa0 .pa2-tb .pa4-dk</div>
+</div>
+*/
+// stylelint-enable
+
+@import './_breakpoints.scss';
+
+$spacing-none: 0;
+$spacing-tiny: 0.05rem;
+$spacing-xxs: 0.25rem; // 4px
+$spacing-xxs2: 0.3rem;
+$spacing-xs: 0.5rem; // 8px
+$spacing-sm: 0.75rem; // 12px
+$spacing-md: 1rem; // 16px
+$spacing-lg: 1.5rem; // 24px
+$spacing-xl: 2rem; // 32px
+$spacing-xxl: 3rem; // 48px
+$spacing-xxxl: 3.75rem; // 60px
+$spacing-xxxxl: 4.5rem; // 72px
+$spacing-20: 1.25rem; // 20px
+$spacing-36: 2.25rem; // 36px
+$spacing-40: 2.5rem; // 40px
+
+// scales are used to keep spacing consistent across site if changed.
+// e..g the space between header and content stays same across the site if there's a change to the spacing value.
+// values above 9 are hardcoded fixed values, e.g. for left aligning ul bullets
+$spacing: (
+  0: $spacing-none,
+  0p5: 0.12rem,
+  1: $spacing-xxs,
+  2: $spacing-xs,
+  3: $spacing-sm,
+  4: $spacing-md,
+  5: $spacing-lg,
+  6: $spacing-xl,
+  7: $spacing-xxl,
+  8: $spacing-xxxl,
+  9: $spacing-xxxxl,
+  -1: $spacing-tiny,
+  -2: -0.125rem,
+  -3: -0.75rem,
+  -4: -0.5rem, //8px
+  -5: -0.313rem,
+  -6: -0.6rem, // 9px
+  -7: -0.45rem, // 7px,
+  -10: -0.625rem, // 10px
+  10: 0.625rem,
+  11: 0.688rem,
+  12: 0.75rem,
+  13: 0.8125rem,
+  14: 0.875rem,
+  15: 0.938rem,
+  16: 1rem,
+  -12: -0.75rem,
+  -13: -0.8125rem,
+  -16: -1rem,
+  17: 1.063rem,
+  18: 1.125rem,
+  20: 1.25rem,
+  22: 1.375rem,
+  24: 1.5rem,
+  26: 1.625rem,
+  28: 1.75rem,
+  32: 2rem,
+  34: 2.125rem,
+  36: 2.25rem,
+  40: 2.5rem,
+  43: 2.688rem,
+  -20: -1.25rem,
+  30: 1.875rem,
+  38: 2.375rem,
+  
+  -40: -2.5rem,
+  -45: -2.8125rem,
+  50: 3.1rem,
+  56: 3.5rem,
+  60: 3.75rem,
+  64: 4rem,
+  65: 4.06rem,
+  70: 4.375rem,
+  80: 5rem,
+  100: 6.2rem,
+  150: 9.375rem,
+  110: 6.875rem,
+  117: 11.0625rem,
+  -50: -3.1rem,
+  -60: -3.75rem,
+  25rem: 25.25rem,
+  '25p': 25%,
+  '26p': 26.5%,
+  '28p': 28.5%,
+  '50p': 50%,
+  auto: auto,
+  minus: -0.0625rem,
+);
+
+$classes: (
+  pa: padding,
+  pl: padding-left,
+  pr: padding-right,
+  pt: padding-top,
+  pb: padding-bottom,
+  pv: padding-top padding-bottom,
+  ph: padding-left padding-right,
+
+  ma: margin,
+  ml: margin-left,
+  mr: margin-right,
+  mt: margin-top,
+  mb: margin-bottom,
+  mv: margin-top margin-bottom,
+  mh: margin-left margin-right
+);
+
+// following scss loops loop over spacing classes for each level for each breakpoint
+// e.g. pa0, pa0-nm...pa1, pa1-nm...
+@each $class, $attrs in $classes {
+  @each $step, $var in $spacing {
+    .#{$class}#{$step} {
+      @each $attr in $attrs {
+        #{$attr}: #{$var};
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+@each $class, $attrs in $classes {
+  @each $step, $var in $spacing {
+    @include nm(#{$class}#{$step}) {
+      @each $attr in $attrs {
+        #{$attr}: #{$var};
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+@each $class, $attrs in $classes {
+  @each $step, $var in $spacing {
+    @include tb(#{$class}#{$step}) {
+      @each $attr in $attrs {
+        #{$attr}: #{$var};
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+@each $class, $attrs in $classes {
+  @each $step, $var in $spacing {
+    @include dk(#{$class}#{$step}) {
+      @each $attr in $attrs {
+        #{$attr}: #{$var};
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+@each $class, $attrs in $classes {
+  @each $step, $var in $spacing {
+    @include mob(#{$class}#{$step}) {
+      @each $attr in $attrs {
+        #{$attr}: #{$var};
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+@each $class, $attrs in $classes {
+  @each $step, $var in $spacing {
+    @include less-device(#{$class}#{$step}) {
+      @each $attr in $attrs {
+        #{$attr}: #{$var};
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+@each $class, $attrs in $classes {
+  @each $step, $var in $spacing {
+    @include bt-mob-dk(#{$class}#{$step}) {
+      @each $attr in $attrs {
+        #{$attr}: #{$var};
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+// stylelint-disable no-eol-whitespace
+// This is needed for the adhesion ads that are sticky to the bottom of the screen.
+// It allows for extra spacing at the bottom of the screen on iphone X so the bar doesn't
+// cover the ad.
+// https://webkit.org/blog/7929/designing-websites-for-iphone-x/
+.pb-iphone-x {
+  /* Default padding */
+  padding-bottom: 0;
+
+  /* iOS < 11.2 */
+  padding-bottom: constant(safe-area-inset-bottom);
+
+  /* iOS 11.2 > */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+// stylelint-enable

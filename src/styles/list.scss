@@ -1,0 +1,38 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: list
+name: list
+category: list
+---
+## list
+
+`.no-bullets`
+Remove default list bullets
+
+<ul class="no-bullets">
+  <li>ul.no-bullets > li</li>
+  <li>ul.no-bullets > li</li>
+</ul>
+
+`.no-list-style`
+Remove all bullets and styling on a list
+
+<ul class="no-list-style">
+  <li>ul.no-list-style</li>
+  <li>ul.no-list-style</li>
+</ul>
+*/
+// stylelint-enable
+
+@import "./_colors.scss";
+@import "./spacing.scss";
+
+.no-bullets {
+  list-style-type: none;
+}
+
+.circle-bullets {
+  list-style: circle;
+}
