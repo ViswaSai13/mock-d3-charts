@@ -1,0 +1,70 @@
+@import './_colors.scss';
+.heading1{
+    font-family: Avenir-Heavy;
+    font-size: 32px;
+    color: $heading1;
+    letter-spacing: 0;
+    line-height: 32px;
+}
+
+.heading2{
+    font-family: Avenir-Heavy;
+    font-size: 28px;
+    color: $heading;
+    letter-spacing: 0;
+    line-height: 33px;
+}
+
+.heading3{
+    font-family: Avenir-Heavy;
+    font-size: 24px;
+    color: $heading;
+    letter-spacing: 0;
+    line-height: 33px;
+}
+
+.heading4{
+    font-family: Avenir-Medium;
+    font-size: 18px;
+    color: $heading;
+    letter-spacing: 0;
+    line-height: 26px;
+}
+
+.heading5{
+    font-family: Avenir-Medium;
+    font-size: 14px;
+    color: $heading;
+    letter-spacing: 0;
+    line-height: 20px;
+}
+
+.number1 {
+    font-family: Roboto-Medium;
+    font-size: 54px;
+    letter-spacing: 15;
+}
+
+.number2 {
+    font-family: Roboto-Medium;
+    font-size: 44px;
+    letter-spacing: 15;
+}
+
+.number3 {
+    font-family: Roboto-Medium;
+    font-size: 28px;
+    letter-spacing: 15;
+}
+
+.number4 {
+    font-family: Roboto-Medium;
+    font-size: 18px;
+    letter-spacing: 15;
+}
+
+.number5 {
+    font-family: Roboto-Medium;
+    font-size: 18px;
+    letter-spacing: 15;
+}

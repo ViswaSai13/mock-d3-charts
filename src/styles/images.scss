@@ -1,0 +1,140 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: images
+name: images
+category: images
+---
+## images
+`.bg-img-cover`
+<div class="bg-img-cover h300 col-24 mb3" style="background-image:url(http://media.caranddriver.com/images/16q1/665019/2016-bmw-x1-xdrive28i-test-review-car-and-driver-photo-665854-s-original.jpg)"></div>
+`.bg-img-cover.bg-img-center`
+<div class="bg-img-cover bg-img-center h300 col-24 mb3" style="background-image:url(http://media.caranddriver.com/images/16q1/665019/2016-bmw-x1-xdrive28i-test-review-car-and-driver-photo-665854-s-original.jpg)"></div>
+`.bg-img-contain`
+<div class="bg-img-contain h300 col-24 mb3" style="background-image:url(http://media.caranddriver.com/images/16q1/665019/2016-bmw-x1-xdrive28i-test-review-car-and-driver-photo-665854-s-original.jpg)"></div>
+`.bg-img-left`
+<div class="bg-img-left h300 col-24 mb3" style="background-image:url(http://media.caranddriver.com/images/16q1/665019/2016-bmw-x1-xdrive28i-test-review-car-and-driver-photo-665854-s-original.jpg)"></div>
+`.bg-no-repeat`
+disable background image repeating.
+`.bg-img-cover` and `.bg-img-contain` add no-repeat automatically
+### Aspect Ratios
+dynamic height images based on aspect ratio.
+`.ar65`
+<div class="bg-img-cover ar65 col-24" style="background-image:url(http://media.caranddriver.com/images/16q1/665019/2016-bmw-x1-xdrive28i-test-review-car-and-driver-photo-665854-s-original.jpg)"></div>
+*/
+// stylelint-enable
+
+@import './_breakpoints.scss';
+
+.bg-img-cover {
+  background-size: cover;
+}
+
+.bg-img-contain {
+  background-size: contain;
+}
+
+.bg-img-center {
+  background-position: center;
+}
+
+.bg-img-hero {
+  background-position: 50% 70%;
+  background-repeat: no-repeat;
+}
+
+.bg-img-left {
+  background-position: left;
+}
+
+.bg-img-contain,
+.bg-img-cover,
+.bg-img-center,
+.bg-img-left,
+.bg-no-repeat {
+  background-repeat: no-repeat;
+  transform: translate3d(0, 0, 0);
+}
+
+.pre-lazy {
+  opacity: 0;
+  transition: opacity 0.3s linear;
+  transform: translate3d(0, 0, 0);
+}
+
+.pre-lazy.lazyloaded {
+  opacity: 1;
+}
+
+$aspect-ratios: (
+  45: 45%,
+  55: 55%,
+  65: 65%
+);
+
+// Aspect Ratios
+@each $name, $val in $aspect-ratios {
+  .ar#{$name} {
+    padding-bottom: #{$val};
+  }
+}
+
+@each $name, $val in $aspect-ratios {
+  @include tb(ar#{$name}) {
+    padding-bottom: #{$val};
+  }
+}
+
+@each $name, $val in $aspect-ratios {
+  @include nm(ar#{$name}) {
+    padding-bottom: #{$val};
+  }
+}
+
+@each $name, $val in $aspect-ratios {
+  @include dk(ar#{$name}) {
+    padding-bottom: #{$val};
+  }
+}
+
+.parallax {
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: 0 0;
+
+  @include tablet {
+    background-position: 0 -30px;
+  }
+
+  @include desktop {
+    background-position: 0 -130px;
+  }
+}
+
+.hero-image {
+  transform: translate3d(0, 0, 0);
+
+  /* hero image resizing */
+  @include mobile {
+    height: 200px;
+  }
+
+  @include tablet {
+    height: 340px;
+  }
+
+  @include desktop {
+    height: 500px;
+  }
+
+  @include xl-desktop {
+    height: 640px;
+  }
+
+  @include xxl-desktop {
+    height: 800px;
+  }
+}

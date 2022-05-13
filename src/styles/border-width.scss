@@ -1,0 +1,35 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: border width
+name: border width
+category: border width
+---
+## border width
+
+`.border-width-*` 4, 5, etc  
+Changes border width pixel value  
+<div class="border-all pa1 mb3 border-width-4">.border-width-4</div>
+
+*/
+// stylelint-enable
+
+$widths: (
+  0p5: 0.031rem,
+  1: 0.063rem,
+  2: 0.125rem,
+  3: 0.188rem,
+  4: 0.25rem,
+  5: 0.313rem
+);
+
+// Border widths
+@each $name, $val in $widths {
+  .border-width-#{$name} {
+    border-width: #{$val};
+  }
+  .border-bottom-width-#{$name} {
+    border-bottom-width: #{$val};
+  }
+}

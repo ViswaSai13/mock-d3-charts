@@ -1,0 +1,25 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: cursor
+name: cursor
+category: cursor
+---
+## cursor
+
+<div class="pointer bg-white-smoke inline-block">.pointer</div>
+*/
+// stylelint-enable
+
+.pointer {
+  cursor: pointer;
+}
+
+.cursor-disabled {
+  cursor: not-allowed;
+}
+
+.text-unselect {
+  user-select: none;
+}

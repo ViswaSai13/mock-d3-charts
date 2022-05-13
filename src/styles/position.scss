@@ -1,0 +1,260 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: position
+name: position
+category: position
+---
+## position
+
+To apply positions, use `pos-rel`, `pos-stat`, `pos-abs`, and `pos-fix`. `*-nm` breakpoints is availbale for this set of classes.
+Available position classes, use `top*`, `left*`, `bottom*`, `right*`, where * is a number listed. `*-nm` breakpoints is availbale for this set of classes.
+
+*/
+// stylelint-enable
+
+@import './_breakpoints.scss';
+
+$positions: (
+  rel: relative,
+  abs: absolute,
+  fix: fixed,
+  stat: static
+);
+
+@each $name, $val in $positions {
+  .pos-#{$name} {
+    position: #{$val};
+  }
+}
+
+@each $name, $val in $positions {
+  @include nm(pos-#{$name}) {
+    position: #{$val};
+  }
+
+  @include dk(pos-#{$name}) {
+    position: #{$val};
+  }
+}
+
+/* Left, Right, Top, Bottom */
+
+$tops: (
+  0: 0,
+  1: 0.0625rem,
+  2: 0.125rem,
+  6: 0.375rem,
+  8: 0.5rem,
+  11: 0.6875rem,
+  12: 0.75rem,
+  14: 0.875rem,
+  24: 1.5rem,
+  26: 1.6rem,
+  36: 2.25rem,
+  48: 3rem,
+  56: 3.5rem,
+  64: 4rem,
+  70: 4.375rem,
+  80: 5rem,
+  240: 15rem,
+  -6: -0.375rem,
+  -10: -0.625rem,
+  -40: -2.5rem,
+  -48: -3rem,
+  -64: -4rem,
+  -152:-9.5rem,
+  '25p': 25%,
+  '35p': 35%,
+  '45p': 45%,
+  auto: auto
+);
+
+@each $name, $val in $tops {
+  .top#{$name} {
+    top: #{$val};
+  }
+}
+
+@each $name, $val in $tops {
+  @include nm(top#{$name}) {
+    top: #{$val};
+  }
+
+  @include tb(top#{$name}) {
+    top: #{$val};
+  }
+
+  @include dk(top#{$name}) {
+    top: #{$val};
+  }
+
+  @include mob(top#{$name}) {
+    top: #{$val};
+  }
+}
+
+$lefts: (
+  0: 0,
+  1: 0.0625rem,
+  2: 0.125rem,
+  6: 0.375rem,
+  8: 0.5rem,
+  10: 0.625rem,
+  11: 0.6875rem,
+  12: 0.75rem,
+  14: 0.875rem,
+  20: 1.25rem,
+  22: 1.375rem,
+  24: 1.5rem,
+  26: 1.6rem,
+  36: 2.25rem,
+  48: 3rem,
+  56: 3.5rem,
+  64: 4rem,
+  70: 4.375rem,
+  80: 5rem,
+  240: 15rem,
+  -6: -0.375rem,
+  -10: -0.625rem,
+  -40: -2.5rem,
+  -48: -3rem,
+  -64: -4rem,
+  -152:-9.5rem,
+  '25p': 25%,
+  '35p': 35%,
+  '45p': 45%,
+  auto: auto
+);
+
+@each $name, $val in $lefts {
+  .left#{$name} {
+    left: #{$val};
+  }
+
+  @include tb(left#{$name}) {
+    left: #{$val};
+  }
+
+  @include dk(left#{$name}) {
+    left: #{$val};
+  }
+
+   @include mob(left#{$name}) {
+    left: #{$val};
+  }
+}
+
+@each $name, $val in $lefts {
+  @include nm(left#{$name}) {
+    left: #{$val};
+  }
+}
+
+$rights: (
+  0: 0,
+  1: 0.0625rem,
+  2: 0.125rem,
+  6: 0.375rem,
+  8: 0.5rem,
+  11: 0.6875rem,
+  12: 0.75rem,
+  14: 0.875rem,
+  24: 1.5rem,
+  26: 1.6rem,
+  36: 2.25rem,
+  48: 3rem,
+  56: 3.5rem,
+  64: 4rem,
+  70: 4.375rem,
+  80: 5rem,
+  240: 15rem,
+  -6: -0.375rem,
+  -10: -0.625rem,
+  -40: -2.5rem,
+  -48: -3rem,
+  -64: -4rem,
+  -152:-9.5rem,
+  '25p': 25%,
+  '35p': 35%,
+  '45p': 45%,
+  auto: auto
+);
+
+@each $name, $val in $rights {
+  .right#{$name} {
+    right: #{$val};
+  }
+}
+
+@each $name, $val in $rights {
+  @include nm(right#{$name}) {
+    right: #{$val};
+  }
+
+  @include tb(right#{$name}) {
+    right: #{$val};
+  }
+
+  @include dk(right#{$name}) {
+    right: #{$val};
+  }
+
+   @include mob(right#{$name}) {
+    right: #{$val};
+  }
+}
+
+$bottoms: (
+  0: 0,
+  1: 0.0625rem,
+  2: 0.125rem,
+  4: 0.25rem,
+  6: 0.375rem,
+  8: 0.5rem,
+  10: 0.625rem,
+  11: 0.6875rem,
+  12: 0.75rem,
+  14: 0.875rem,
+  24: 1.5rem,
+  26: 1.6rem,
+  32: 2rem,
+  36: 2.25rem,
+  48: 3rem,
+  56: 3.5rem,
+  64: 4rem,
+  70: 4.375rem,
+  80: 5rem,
+  240: 15rem,
+  -6: -0.375rem,
+  -10: -0.625rem,
+  -40: -2.5rem,
+  -48: -3rem,
+  -64: -4rem,
+  -152:-9.5rem,
+  '25p': 25%,
+  '35p': 35%,
+  '45p': 45%,
+  auto: auto
+);
+
+@each $name, $val in $bottoms {
+  .bottom#{$name} {
+    bottom: #{$val};
+  }
+}
+
+@each $name, $val in $bottoms {
+  @include nm(bottom#{$name}) {
+    bottom: #{$val};
+  }
+
+   @include dk(bottom#{$name}) {
+    botttom: #{$val};
+  }
+
+   @include mob(bottom#{$name}) {
+    botttom: #{$val};
+  }
+}

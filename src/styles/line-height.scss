@@ -1,0 +1,84 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: line height
+name: line height
+category: line height
+---
+## line height
+
+<p class="lh15">.lh15</p>
+<p class="lh16">.lh16</p>
+<p class="lh18">.lh18</p>
+<p class="lh20">.lh20</p>
+<p class="lh22">.lh22</p>
+<p class="lh24">.lh24</p>
+<p class="lh25">.lh25</p>
+<p class="lh26">.lh26</p>
+<p class="lh28">.lh28</p>
+<p class="lh30">.lh30</p>
+<p class="lh32">.lh32</p>
+<p class="lh34">.lh34</p>
+<p class="lh36">.lh36</p>
+<p class="lh40">.lh40</p>
+<p class="lh42">.lh42</p>
+<p class="lh44">.lh44</p>
+<p class="lh47">.lh47</p>
+
+*/
+// stylelint-enable
+
+@import './_breakpoints.scss';
+
+$lh24: 1.5rem;
+$lh36: 2.25rem;
+
+$line-heights: (
+  12: 0.75rem,
+  14: 0.875rem,
+  15: 0.9375rem,
+  16: 1rem,
+  18: 1.125rem,
+  20: 1.25rem,
+  22: 1.375rem,
+  24: $lh24,
+  25: 1.563rem,
+  26: 1.625rem,
+  28: 1.75rem,
+  30: 1.875rem,
+  32: 2rem,
+  34: 2.125rem,
+  36: 2.25rem,
+  38: 2.375rem,
+  40: 2.5rem,
+  42: 2.625rem,
+  44: 2.75rem,
+  47: 2.9375rem,
+  71: 4.7rem
+);
+
+@each $name, $val in $line-heights {
+  .lh#{$name} {
+    line-height: #{$val};
+  }
+}
+
+@each $name, $val in $line-heights {
+  @include tb(lh#{$name}) {
+    line-height: #{$val};
+  }
+}
+
+@each $name, $val in $sizes {
+  @include dk(lh#{$name}) {
+    line-height: #{$val};
+  }
+}
+
+@each $name, $val in $sizes {
+  @include nm(lh#{$name}) {
+    line-height: #{$val};
+  }
+}
+

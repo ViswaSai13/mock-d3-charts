@@ -1,0 +1,303 @@
+// stylelint-disable no-eol-whitespace
+/* doc
+---
+title: breakpoints
+name: breakpoints
+category: Breakpoints
+---
+## _breakpoints
+Breakpoint mixins for importing into other scss files
+User rems to scale with zoom level
+[rem <> px converter link](http://www.w3schools.com/tags/ref_pxtoemconversion.asp)
+Mobile: < 48rem (768px)
+Tablet: >= 48rem and < 64rem (1200px)
+Desktop: >= 64rem
+Not Mobile: >= 48rem
+Device: < 64rem
+Where applicable, `col-\*, h\*, w\*`, etc breakpoint classes are defined as:
+* `\*-tb` // tablet
+* `\*-dk` // desktop
+* `\*-nm` // not mobile
+## Retina Display
+Allows to adjust classes depening on the retina display. Example:
+`w100-dpr2` - When device pixel ratio is 2, the `w100` class will be in effect
+*/
+// stylelint-enable
+
+// Media Queries
+$small-mob: 359px;
+$small-mob-width: 20rem; // 320px
+$med-mob-width: 23.4375rem; // 375px
+$large-mob-width: 26.5625rem; // 425px
+$tablet-width: 48rem; // 768px
+$desktop-width: 64rem; // 1024px
+$desktop-medium-width: 80rem; // 1280px
+$xl-desktop-width: 93.75rem; // 1500px
+$xxl-desktop-width: 125rem; // 2000px
+$fourk-width: 160rem; // 2560
+$desktop-large-width: 90rem; // 1440
+
+/*
+* Mixins
+* example:
+* @include tablet { font-size: 18px; }
+*/
+$px: 0.0625rem;
+
+@mixin mobile {
+  @media (max-width: #{$tablet-width - $px}) {
+    /* stylelint-disable-line media-feature-no-missing-punctuation */
+    @content;
+  }
+}
+
+@mixin fourK-screen {
+  @media (max-width: $fourk-width) and (min-width: $desktop-large-width + 1) {
+    @content;
+  }
+}
+
+@mixin laptop-large {
+  @media (max-width: $desktop-large-width) {
+    @content;
+  }
+}
+
+@mixin mobile-desktop {
+  @media (min-width: #{$tablet-width+ 1}) and (max-width: $desktop-large-width) {
+    @content;
+  }
+}
+
+@mixin laptop-medium {
+  @media (max-width: $desktop-medium-width) {
+    @content;
+  }
+}
+
+@mixin laptop-only {
+  @media (max-width: $desktop-width) and (min-width: $tablet-width) {
+    @content;
+  }
+}
+
+@mixin phone-medium {
+  @media (max-width: $med-mob-width) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $tablet-width) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: #{$large-mob-width}) {
+    @content;
+  }
+}
+
+@mixin s-mobile {
+  @media (max-width: #{$small-mob}) {
+    @content;
+  }
+}
+
+@mixin laptopMedium-to-fourKscreen {
+  @media (min-width: #{$desktop-medium-width + 1}) and (max-width: $fourk-width) {
+    @content;
+  }
+}
+
+@mixin between-1024-to-1200 {
+    @media (min-width: $desktop-width) and (max-width: #{$desktop-medium-width - 1}) {
+        @content;
+    }
+}
+
+@mixin between-1024-to-768 {
+  @media (min-width: #{$tablet-width - 1}) and (max-width: #{$desktop-width - 1}) {
+    @content;
+  }
+}
+
+@mixin not-mobile {
+
+  // larger than mobile
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - $px}) {
+    /* stylelint-disable-line media-feature-no-missing-punctuation */
+    @content;
+  }
+}
+
+// smaller than desktop. only used for responsive utilities
+@mixin device {
+  @media (max-width: #{$desktop-width}) {
+    /* stylelint-disable-line media-feature-no-missing-punctuation */
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin xl-desktop {
+  @media (min-width: #{$xl-desktop-width}) {
+    @content;
+  }
+}
+
+@mixin xxl-desktop {
+  @media (min-width: #{$xxl-desktop-width}) {
+    @content;
+  }
+}
+
+@mixin between-mobile-and-desktop {
+  @media (min-width: $large-mob-width + 1) and (max-width: $desktop-width) {
+    @content;
+  }
+}
+
+// Device Pixel Ratio 2. This is used for Retina Display. Inspired from
+// https://css-tricks.com/snippets/css/retina-display-media-query/
+@mixin device-pixel-ratio-2 {
+
+  @media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi) {
+    @content;
+  }
+}
+
+// Create desktop and tablet classes at different breakpoints
+// e.g. .col-6, .col-6-tb, col-6-dk, .col-6-nm
+@mixin bkpts($name) {
+  .#{$name} {
+    @content;
+  }
+
+  .#{$name}-nm {
+    @include not-mobile {
+      @content;
+    }
+  }
+
+  .#{$name}-tb {
+    @include tablet {
+      @content;
+    }
+  }
+
+  .#{$name}-dk {
+    @include desktop {
+      @content;
+    }
+  }
+
+  .#{$name}-mob {
+    @include mobile {
+      @content;
+    }
+  }
+
+  .#{$name}-device {
+    @include mobile {
+      @content;
+    }
+  }
+
+  .#{$name}-xl {
+    @include xl-desktop {
+      @content;
+    }
+  }
+}
+
+@mixin nm($name) {
+  .#{$name}-nm {
+    @include not-mobile {
+      @content;
+    }
+  }
+}
+
+@mixin mob($name) {
+  .#{$name}-mob {
+    @include mobile {
+      @content;
+    }
+  }
+}
+
+@mixin tb($name) {
+  .#{$name}-tb {
+    @include tablet {
+      @content;
+    }
+  }
+}
+
+@mixin dk($name) {
+  .#{$name}-dk {
+    @include desktop {
+      @content;
+    }
+  }
+}
+
+@mixin xl($name) {
+  .#{$name}-xl {
+    @include xl-desktop {
+      @content;
+    }
+  }
+}
+
+@mixin dpr2($name) {
+  .#{$name}-dpr2 {
+    @include device-pixel-ratio-2 {
+      @content;
+    }
+  }
+}
+
+@mixin bt-mob-dk($name) {
+  .#{$name}-bt-mob-dk {
+    @include between-mobile-and-desktop {
+      @content;
+    }
+  }
+}
+
+@mixin less-device($name) {
+  .#{$name}-device {
+    @include device {
+      @content;
+    }
+  }
+}
+
+@mixin bt-lap-4k($name) {
+  .#{$name}-bt-lap-4k {
+    @include laptopMedium-to-fourKscreen {
+      @content;
+    }
+  }
+}
+
+@mixin tablet-desktop-small-width {
+  @media (min-width: #{$tablet-width + 1}) and (max-width: #{$desktop-small-width - 1}) {
+    @content;
+  }
+}

@@ -1,0 +1,32 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: gradient
+name: gradient
+category: gradient
+---
+## gradient
+<div class="flex mb4 gradient">
+  <div class="bg-silver">div 1</div>
+  <div class="bg-gainsboro">div 2</div>
+</div>
+*/
+// stylelint-enable
+
+// Currently used on Model Hero Images to create a darker background. Please leave this main gradient alone and create a new one if there are different colors/values needed
+.gradient {
+  background: -moz-linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, black); /* FF3.6-15 */
+  background: -webkit-linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, black); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, black); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#a6000000', endColorstr='#00000000', GradientType=0); /* IE6-9 */
+  transform: translate3d(0, 0, 0);
+}
+
+@include nm(gradient) {
+  background: -moz-linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, black); /* FF3.6-15 */
+  background: -webkit-linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, black); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, black); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#a6000000', endColorstr='#00000000', GradientType=0); /* IE6-9 */
+  transform: translate3d(0, 0, 0);
+}

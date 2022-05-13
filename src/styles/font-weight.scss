@@ -1,0 +1,42 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: font weight
+name: font weight
+category: font weight
+---
+## font weight
+
+<p class="fw-thin">.fw-thin</p>
+<p class="fw-extralight">.fw-extralight</p>
+<p class="fw-light">.fw-light</p>
+<p class="fw-normal">.fw-normal</p>
+<p class="fw-medium">.fw-medium</p>
+<p class="fw-semibold">.fw-semibold</p>
+<p class="fw-bold">.fw-bold</p>
+<p class="fw-extrabold">.fw-extrabold</p>
+<p class="fw-heavy">.fw-heavy</p>
+
+*/
+// stylelint-enable
+$normal: 400;
+$bold: 700;
+
+$weights: (
+  thin: 100,
+  extralight: 200,
+  light: 300,
+  normal: $normal,
+  medium: 500,
+  semibold: 600,
+  bold: $bold,
+  extrabold: 800,
+  heavy: 900
+);
+
+@each $name, $val in $weights {
+  .fw-#{$name} {
+    font-weight: #{$val};
+  }
+}

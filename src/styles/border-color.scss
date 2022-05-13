@@ -1,0 +1,33 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: border color
+name: border color
+category: border color
+---
+## border color
+
+<div class="row waf-4 mt3">
+  <div class="pa1 h50 border-all border-black">.border-black</div>
+</div>
+
+<p class="mt3">Hover states</p>
+<div class="pa1 h50 border-all border-black hover-border-red inline-block">.hover-border-red</div>
+
+*/
+// stylelint-enable
+@import './_colors.scss';
+
+@each $name, $color in $colors {
+  .#{'border-'+$name} {
+    border-color: #{$color};
+  }
+
+  .#{'hover-border-'+$name} {
+    &:hover,
+    &:active {
+      border-color: #{$color};
+    }
+  }
+}

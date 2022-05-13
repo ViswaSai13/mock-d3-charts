@@ -1,0 +1,43 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: letter spacing
+name: letter spacing
+category: letter spacing
+---
+## letter spacing
+
+<p class="ls-xxs">.ls-xxs</p>
+<p class="ls-xs">.ls-xs</p>
+<p class="ls-sm">.ls-sm</p>
+<p class="ls-md">.ls-md</p>
+<p class="ls-lg">.ls-lg</p>
+<p class="ls-xl">.ls-xl</p>
+<p class="ls-xxl">.ls-xxl</p>
+<p class="ls-rg">.ls-nm</p>
+
+*/
+// stylelint-enable
+@import './_breakpoints.scss';
+
+$letterspacings: (
+  xxs: -0.1rem,
+  xs: -0.05rem,
+  sm: -0.025rem,
+  md: 0.025rem,
+  lg: 0.05rem,
+  xl: 0.1rem,
+  xxl: 0.2rem,
+  rg: 0rem
+);
+
+@each $name, $val in $letterspacings {
+  .ls-#{$name} {
+    letter-spacing: #{$val};
+  }
+
+  @include nm(ls-#{$name}) {
+    letter-spacing: #{$val};
+  }
+}

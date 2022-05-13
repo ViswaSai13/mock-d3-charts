@@ -1,0 +1,90 @@
+// // stylelint-disable no-eol-whitespace
+
+// /* doc
+// ---
+// title: font family
+// name: font family
+// category: font family
+// ---
+// ## font family
+
+// <p class="serif">.serif Georgia</p>
+// <p class="serif-2">.serif-2 FreightTextW01</p>
+// <p class="sserif">.sserif NewsGothicNo2W01</p>
+// <p class="sserif-2">.sserif-2 Helvetica</p>
+
+// */
+// // stylelint-enable
+// @import './_breakpoints.scss';
+// @import './_font-vars.scss';
+
+// /* Font Family */
+
+// @font-face {
+//   font-family: 'NewsGothicNo2W01';
+//   font-weight: 300;
+//   font-style: normal;
+//   src: url('../fonts/910c3948-20d5-43f1-89e0-6995392a2be7.eot?#iefix');
+//   src:
+//     url('../fonts/910c3948-20d5-43f1-89e0-6995392a2be7.eot?#iefix') format('eot'),
+//     url('../fonts/92afaf26-6853-4fc6-90a5-5c873f26f95a.woff2') format('woff2'),
+//     url('../fonts/8afbbc4c-5de4-4735-825f-68009841b70b.woff') format('woff'),
+//     url('../fonts/f675b491-c8c9-4da3-b464-58904927d96e.ttf') format('truetype'),
+//     url('../fonts/197a9def-e57c-4117-a459-a8e6a586f242.svg#197a9def-e57c-4117-a459-a8e6a586f242') format('svg');
+// }
+
+// @font-face {
+//   font-family: 'NewsGothicNo2W01';
+//   font-weight: 700;
+//   font-style: normal;
+//   src: url('../fonts/9ddbb229-0a6a-4c90-97b0-4a4f2a9db857.eot?#iefix');
+//   src:
+//     url('../fonts/9ddbb229-0a6a-4c90-97b0-4a4f2a9db857.eot?#iefix') format('eot'),
+//     url('../fonts/adf7c179-c72f-4e3a-8513-53043d1d07b6.woff2') format('woff2'),
+//     url('../fonts/87ae4f4b-6957-43a6-998e-e804b5f8491e.woff') format('woff'),
+//     url('../fonts/d92ef0b9-8175-4185-b6b4-cb02a66be0fa.ttf') format('truetype'),
+//     url('../fonts/02ce05d0-e734-4793-b3dc-3211cc7f9f44.svg#02ce05d0-e734-4793-b3dc-3211cc7f9f44') format('svg');
+// }
+
+// @font-face {
+//   font-family: 'Source Sans';
+//   font-weight: 300;
+//   font-style: normal;
+//   src: url('./fonts/SourceSansPro-Regular.ttf') format('truetype');
+// }
+// @font-face {
+//   font-family: 'Source Sans-Light';
+//   font-style: normal;
+//   src: url('./fonts/SourceSansPro-Light.ttf') format('truetype');
+// }
+// .serif {
+//   font-family: $font-family-serif;
+// }
+
+// .serif-2 {
+//   font-family: $font-family-serif-2;
+// }
+
+// .sserif {
+//   font-family: $font-family-sserif;
+// }
+
+// .sserif-2 {
+//   font-family: $font-family-sserif-2;
+// }
+
+// @include nm(serif-2) {
+//   font-family: $font-family-serif-2;
+// }
+
+.roboto-m {
+    font-family: 'Roboto';
+}
+
+.roboto-r {
+    font-family: Roboto-Regular;
+}
+
+.lato {
+    font-family: 'Lato', sans-serif;
+}

@@ -1,0 +1,72 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: border radius
+name: border radius
+category: border radius
+---
+## border radius
+
+`.br<side><pixel>` t, l, b, r, tl, bl, br, tr
+Adds border-radius to an element. defaults to 1px. applies to all sides if not specified
+<div class="border-all br pa1 mb3">.br</div>
+<div class="border-all br3 pa1 mb3">.br3</div>
+<div class="border-all brtr4 pa1 mb3">.brtr4</div>
+
+`.round`
+Adds border-radius 50%
+<div class="button w50 h50 bg-white-smoke round mb2"></div>
+
+*/
+// stylelint-enable
+
+@import './_breakpoints.scss';
+
+$border-radii: (
+  '': '',
+  t: -top,
+  b: -bottom,
+  l: -left,
+  r: -right,
+  tr: -top-right,
+  br: -bottom-right,
+  bl: -bottom-left,
+  tl: -top-left
+);
+
+$radii: (
+  '': 0.0625rem,
+  2: 0.125rem,
+  3: 0.188rem,
+  4: 0.25rem,
+  5: 0.313rem,
+  6: 0.375rem,
+  7: 0.438rem,
+  9: 0.56rem,
+  8: 0.5rem,
+  15: 0.938rem,
+  20: 1.25rem,
+  22: 1.375rem,
+  24:1.50rem
+);
+
+@each $name, $val in $border-radii {
+  @each $radName, $radValue in $radii {
+    .br#{$name}#{$radName} {
+      border#{$val}-radius: #{$radValue};
+    }
+  }
+}
+
+@each $name, $val in $border-radii {
+  @each $radName, $radValue in $radii {
+    @include nm(br#{$name}#{$radName}) {
+      border#{$val}-radius: #{$radValue};
+    }
+  }
+}
+
+.round {
+  border-radius: 50%;
+}

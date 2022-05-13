@@ -1,0 +1,42 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: background position
+name: background position
+category: background position
+---
+## background position
+
+Generates x y background position classes  
+*can't use separate classes for background-position-x and background-position-y not supported in older Firefox versions*
+
+x positions: 3, 97, 100
+y positions: 50
+
+`.bg-pos-97-50 icon-select-arrow`
+<select 
+  class="w100p h50 bg-no-repeat bg-pos-97-50 appearance-none icon-select-arrow">
+</select>
+
+*/
+// stylelint-enable
+
+$x-positions: (
+  3: 3%,
+  97: 97%,
+  100: 100%
+);
+
+$y-positions: (
+  50: 50%
+);
+
+// we can't split out x and y as it's not supported by older versions of firefox
+@each $xname, $xvalue in $x-positions {
+  @each $yname, $yvalue in $y-positions {
+    .bg-pos-#{$xname}-#{$yname} {
+      background-position: #{$xvalue} #{$yvalue};
+    }
+  }
+}

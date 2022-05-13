@@ -1,0 +1,142 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: borders
+name: borders
+category: borders
+---
+## borders
+
+`.border-<side>`
+*all, top, left, right, bottom*
+Adds border to that side only. Defaults to 1px width, 2px border-radius
+
+<div class="border-left pa1 mb4">.border-left</div>
+
+`.border-no-<side>`
+*top, left, right, bottom*
+Shows border on all sides except -side. Use `.border-none` to hide all
+
+<div class="border-no-left pa1 mb4">.border-no-left</div>
+
+`.no-border-<side>`
+*top, left, right, bottom*
+Hides border on that side
+
+<div class="border-bottom no-border-bottom-tb pa1 mb4">.no-border-bottom-tb</div>
+
+`outline-none`
+Removes outline for input, buttons, etc.
+<div class="border pa1 mb4 outline-none">.outline-none</div>
+
+`border-collapse`
+Removes borders from elements that have display table-cell.
+
+*/
+// stylelint-enable
+
+@import './_breakpoints.scss';
+
+$border-width: 1px;
+
+$borders: (
+  all: '',
+  left: -left,
+  right: -right,
+  top: -top,
+  bottom: -bottom
+);
+
+@each $name, $val in $borders {
+  .#{'border-'+$name} {
+    border#{$val}-width: $border-width;
+    border#{$val}-style: solid;
+  }
+
+  .border-#{$name}-dotted {
+    border#{$val}-width: $border-width;
+    border#{$val}-style: dotted;
+  }
+
+  .border-no-#{$name} {
+    border-width: $border-width;
+    border-style: solid;
+    border#{$val}: none;
+  }
+
+  @include nm(no-border-#{$name}) {
+    border#{$val}: none;
+  }
+
+  @include tb(no-border-#{$name}) {
+    border#{$val}: none;
+  }
+
+  @include dk(no-border-#{$name}) {
+    border#{$val}: none;
+  }
+
+  @include nm(border-#{$name}) {
+    border#{$val}-width: $border-width;
+    border#{$val}-style: solid;
+  }
+
+  @include tb(border-#{$name}) {
+    border#{$val}-width: $border-width;
+    border#{$val}-style: solid;
+  }
+
+  @include dk(border-#{$name}) {
+    border#{$val}-width: $border-width;
+    border#{$val}-style: solid;
+  }
+
+  @include nm(border-#{$name}-dotted) {
+    border#{$val}-style: dotted;
+    border-width: 1px;
+  }
+
+  @include dk(border-#{$name}-dotted) {
+    border#{$val}-style: dotted;
+    border-width: 1px;
+  }
+
+  @include dk(border-#{$name}-none) {
+    border: none;
+  }
+
+  @include nm(border-#{$name}-none) {
+    border: none;
+  }
+}
+
+// Needs to be below in order to override
+.border-none {
+  border: none;
+}
+
+// Changes default button border-style
+
+.border-solid {
+  border-style: solid;
+}
+
+// When adding br changes the thickness of the border add this
+.border-ridge {
+  border-style: ridge;
+}
+
+.border-dashed {
+  border-style: dashed;
+}
+
+.border-dotted {
+  border-style: dotted;
+}
+
+// Removes outline
+.outline-none {
+  outline: none;
+  border-width: 0;
+}

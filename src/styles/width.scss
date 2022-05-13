@@ -1,0 +1,256 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: width
+name: width
+category: width
+---
+## width
+
+Width class: `.w\*`, e.g. `w50`
+Max and min widths: `.maxw*` and `.minw*`
+The value is referenced by pixel value but converted to rem in the css.
+Special classes for %, `.w100p` and auto, e.g. `.wauto`.
+
+<div class="h80 w160 w300-tb w600-dk bg-gainsboro mb3">.w160 .w300-tb .w600-dk</div>
+
+*/
+// stylelint-enable
+
+@import './_breakpoints.scss';
+
+/* Widths */
+
+$widths: (
+  0: 0,
+  10: 0.625rem,
+  12: 0.75rem,
+  13: 0.813rem,
+  14: 0.875rem,
+  16: 1rem,
+  18: 1.125rem,
+  20: 1.25rem,
+  22: 1.375rem,
+  24: 1.5rem,
+  26: 1.625rem,
+  28: 1.75rem,
+  30: 1.875rem,
+  32: 2rem,
+  36: 2.25rem,
+  38: 2.375rem,
+  40: 2.5rem,
+  42: 2.625rem,
+  43: 2.688rem,
+  46: 2.875rem,
+  48: 3rem,
+  49: 3.0.63rem,
+  50: 3.125rem,
+  55: 3.43rem,
+  58: 3.625rem,
+  60: 3.75rem,
+  64: 4rem,
+  70: 4.37rem,
+  72: 4.5rem,
+  78: 4.875rem,
+  80: 5rem,
+  83: 5.188rem,
+  85: 5.313rem,
+  88: 5.5rem,
+  90: 5.625rem,
+  92: 5.8rem,
+  98: 6.125rem,
+  100: 6.25rem,
+  104: 6.45rem,
+  112: 7rem,
+  120: 7.5rem,
+  125: 7.81rem,
+  128: 8rem,
+  130: 8.125rem,
+  140: 8.75rem,
+  144: 9rem,
+  146: 9.125rem,
+  150: 9.375rem,
+  155: 9.688rem,
+  160: 10rem,
+  162: 10.125rem,
+  165: 10.25rem,
+  180: 11.25rem,
+  185: 11.5625rem,
+  175: 10.938rem,
+  190: 11.875rem,
+  192: 12rem,
+  200: 12.5rem,
+  220: 13.75rem,
+  225: 14.063rem,
+  235: 14.68rem,
+  240: 15rem,
+  250: 15.63rem,
+  265: 16.56rem,
+  273: 16.88rem,
+  280: 17.5rem,
+  300: 18.75rem,
+  348: 21.75rem, 
+  350: 21.875rem,
+  354: 22.125rem,
+  388: 24.25rem,
+  400: 25rem,
+  427: 26.687rem,
+  430: 26.87rem,
+  450: 28.125rem,
+  470: 29.375rem,
+  485: 30.313rem,
+  500: 31.25rem,
+  548: 34.25rem,
+  570: 35.62rem,
+  600: 37.5rem,
+  690:43.125rem,
+  700: 43.75rem,
+  728: 45.5rem,
+  800: 50rem,
+  1055: 66rem,
+  1078: 67.375rem,
+  auto: auto,
+  inherit: inherit,
+  '8p': 8%,
+  '10p': 10%,
+  '15p': 15%,
+  '16p': 16%,
+  '20p': 20%,
+  '22p': 22%,
+  '23p': 23%,
+  '24p': 24%,
+  '25p': 25%,
+  '26p': 26%,
+  '29p': 29%,
+  '30p': 30%,
+  '32p': 32%,
+  '33p': 33%,
+  '35p': 35%,
+  '37p': 37%,
+  '38p': 38%,
+  '40p': 40%,
+  '42p': 42%,
+  '44p': 44%,
+  '45p': 45%,
+  '48p': 48%,
+  '49p': 49%,
+  '50p': 50%,
+  '54p': 54%,
+  '56p': 56%,
+  '58p': 58%,
+  '59p': 59%,
+  '60p': 60%,
+  '66p': 66%,
+  '68p': 68%,
+  '69p': 69%,
+  '70p': 70%,
+  '74p': 74%,
+  '75p': 75%,
+  '78p': 78%,
+  '55p': 55%,
+  '80p': 80%,
+  '82p': 82%,
+  '84p': 84%,
+  '85p': 85%,
+  '86p': 86%,
+  '90p': 90%,
+  '94p': 94%,
+  '96p': 96%,
+  '98p': 98%,
+  '100p': 100%
+);
+
+@each $name, $val in $widths {
+  .w#{$name} {
+    width: #{$val};
+  }
+
+  .minw#{$name} {
+    min-width: #{$val};
+  }
+
+  .maxw#{$name} {
+    max-width: #{$val};
+  }
+
+  .flex#{$name} {
+    flex: 0 0 #{$val};
+  }
+}
+
+@each $name, $val in $widths {
+  @include nm(w#{$name}) {
+    width: #{$val};
+  }
+
+  @include nm(maxw#{$name}) {
+    max-width: #{$val};
+  }
+
+  @include tb(maxw#{$name}) {
+    max-width: #{$val};
+  }
+
+  @include mob(maxw#{$name}) {
+    max-width: #{$val};
+  }
+
+  @include less-device(maxw#{$name}) {
+    max-width: #{$val};
+  }
+
+  @include bt-mob-dk(maxw#{$name}) {
+    max-width: #{$val};
+  }
+
+  @include bt-lap-4k(max#{$name}) {
+    max-width: #{$val};
+  }
+
+}
+
+@each $name, $val in $widths {
+  @include tb(w#{$name}) {
+    width: #{$val};
+  }
+}
+
+@each $name, $val in $widths {
+  @include mob(w#{$name}) {
+    width: #{$val};
+  }
+}
+
+@each $name, $val in $widths {
+  @include less-device(w#{$name}) {
+    width: #{$val};
+  }
+}
+
+@each $name, $val in $widths {
+  @include dk(w#{$name}) {
+    width: #{$val};
+  }
+  @include dk(minw#{$name}) {
+    min-width: #{$val};
+  }
+}
+
+@each $name, $val in $widths {
+  @include dpr2(w#{$name}) {
+    width: #{$val};
+  }
+}
+
+@each $name, $val in $widths {
+  @include bt-mob-dk(w#{$name}) {
+    width: #{$val};
+  }
+}
+
+@each $name, $val in $widths {
+  @include bt-lap-4k(w#{$name}) {
+    width: #{$val};
+  }
+}

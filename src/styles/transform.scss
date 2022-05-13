@@ -1,0 +1,36 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: transform
+name: transform
+category: transform
+---
+## transform
+
+### transforms
+`.transform-scale*` - where * can be 7 (0.7) and so forth.
+
+<div class="button w500 h50 bg-white-smoke opacity50 tr-all trd-4 trt-ease-in mt2 mb3 hover-transform-scale7">.tr-all .hover-transform-scale7</div>
+
+*/
+// stylelint-enable
+
+$transform-scales: (
+  7: 0.7,
+  10: 1
+);
+
+// Regular Transition
+@each $name, $value in $transform-scales {
+  .transform-scale#{$name} {
+    transform: scale(#{$value}) translate3d(0, 0, 0);
+  }
+}
+
+// Hover states
+@each $name, $value in $transform-scales {
+  .hover-transform-scale#{$name}:hover {
+    transform: scale(#{$value}) translate3d(0, 0, 0);
+  }
+}

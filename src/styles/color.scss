@@ -1,0 +1,54 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: color
+name: color
+category: color
+---
+## color
+
+<p class="text-black">.text-black</p>
+<p class="text-nero">.text-nero<p/p>
+<p class="text-night-rider">.text-night-rider</p>
+<p class="text-charcoal">.text-charcoal</p>
+<p class="text-dim-grey">.text-dim-grey</p>
+<p class="text-suva-grey">.text-suva-grey</p>
+<p class="text-suva-grey-xxl">.text-suva-grey-xxl</p>
+<p class="text-dark-grey">.text-dark-grey</p>
+<p class="text-nubel">.text-nubel</p>
+<p class="text-gainsboro">.text-gainsboro</p>
+<p class="text-white-smoke">.text-white-smoke</p>
+<p class="text-white-smoke-xd">.text-white-smoke-xd</p>
+<p class="text-white bg-white-smoke">.text-white</p>
+<p class="text-persian-red">.text-persian-red</p>
+<p class="text-cinnabar">.text-cinnabar</p>
+<p class="text-denim">.text-denim</p>
+<p class="text-denim">.text-denim</p>
+<p class="text-cerulean">.text-cerulean</p>
+<p class="text-navy-blue">.text-navy-blue</p>
+<p class="text-kelly-green">.text-kelly-green</p>
+<p class="text-zircon">.text-zircon</p>
+<p class="text-dark-cerulean ">.text-dark-cerulean </p>
+<p class="text-gainsboro">.text-transparent = transparent</p>
+
+<p class="mt3">Hover states</p>
+<p class="text-gainsboro hover-text-red">.hover-text-red</p>
+
+*/
+// stylelint-enable
+
+@import './_colors.scss';
+
+@each $name, $color in $colors {
+  .#{'text-'+$name} {
+    color: #{$color};
+  }
+
+  .#{'hover-text-'+$name}{
+    &:hover,
+    &:active {
+      color: #{$color};
+    }
+  }
+}

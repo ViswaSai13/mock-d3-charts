@@ -1,0 +1,60 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: shadow
+name: shadow
+category: shadow
+---
+## shadow
+
+<div class="button w160 h50 bg-white-smoke box-shadow mt2 mb2">.box-shadow</div>
+
+<div class="button w160 h50 bg-white-smoke box-shadow-card mt2 mb2">.box-shadow-card</div>
+
+<div class="button w50 h50 bg-white-smoke round box-shadow-round mb2"></div>
+`.box-shadow-round`
+
+*/
+// stylelint-enable
+@import './_colors.scss';
+@import './_breakpoints.scss';
+
+.box-shadow {
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.4);
+}
+
+.box-shadow-card {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.box-shadow-round {
+  box-shadow: 2px 3px 3px 0 rgba(41, 41, 41, 0.3);
+}
+
+.box-shadow-none {
+  box-shadow: 0 0 0 0;
+}
+.box-shadow-landing {
+  box-shadow: 0 3px 7px 1px rgba(0, 0, 0, 0.04);
+}
+.hover-shadow {
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0);
+
+  &:hover {
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@include tb(box-shadow-none) {
+  box-shadow: 0 0 0 0;
+}
+
+@include nm(box-shadow-none) {
+  box-shadow: 0 0 0 0;
+}
+
+@include dk(box-shadow-none) {
+  box-shadow: 0 0 0 0;
+}

@@ -1,0 +1,80 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: opacity
+name: opacity
+category: opacity
+---
+## opacity
+
+`.opacity*`, `.hover-opacity*`
+e.g. 0, 50, 75, 90, 1
+<div class="button w300 h50 bg-white-smoke opacity50 hover-opacity1 mt2 mb3">.opacity50.hover-opacity1</div>
+
+`opacity*-nm` breakpoints is availbale.
+
+`.bg-opacity*` is also available. This will use `background: rgba(0, 0, 0, *)` so that the child elements will not be affected. See [mozilla opactiy docs](https://developer.mozilla.org/en-US/docs/Web/CSS/opacity)
+
+*/
+// stylelint-enable
+
+@import './_breakpoints.scss';
+
+$opacities: (
+  0: 0,
+  20: 0.2,
+  36: 0.36,
+  50: 0.5,
+  70: 0.7,
+  75: 0.75,
+  80: 0.8,
+  90: 0.9,
+  1: 1
+);
+
+@each $name, $value in $opacities {
+  .opacity#{$name} {
+    opacity: #{$value};
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// workaround to add heirarchy, e.g. opacity0i trumps opacity1
+@each $name, $value in $opacities {
+  .opacity#{$name}i {
+    opacity: #{$value};
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@each $name, $value in $opacities {
+  .hover-opacity#{$name}:hover {
+    opacity: #{$value};
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@each $name, $value in $opacities {
+  @include nm(opacity#{$name}) {
+    opacity: #{$value};
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// This should be used if we do not want the child to be affected by the opacity. Note that SCSS linter will complain if you try to use `rgba(0, 0, 0. #{$value})` in the `@each` statement
+$backgroundOpacities: (
+  // black
+  40: rgba(0, 0, 0, 0.4),
+  60: rgba(0, 0, 0, 0.6),
+  // white
+  65: rgba(255, 255, 255, 0.65),
+  80: rgba(255, 255, 255, 0.8)
+);
+
+@each $name, $value in $backgroundOpacities {
+  .bg-opacity#{$name} {
+    background-color: #{$value};
+    transform: translate3d(0, 0, 0);
+  }
+}

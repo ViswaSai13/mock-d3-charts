@@ -1,0 +1,124 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: overflow
+name: overflow
+category: overflow
+---
+## overflow
+
+*options*
+a: auto,
+h: hidden,
+s: scroll,
+v: visible,
+initial: initial,
+inherit: inherit
+
+`.overflow-<option>` overflow: {value}
+`.overflow-x-<option>` overflow-x: {value}
+`.overflow-y-<option>` overflow-y: {value}
+
+Responsive, use *-tb, *-nm, *-dk for tablet, not-mobile and desktop, respectively
+
+*/
+// stylelint-enable
+
+@import './_breakpoints.scss';
+
+$overflows: (
+  a: auto,
+  h: hidden,
+  s: scroll,
+  v: visible,
+  initial: initial,
+  inherit: inherit
+);
+
+@each $name, $val in $overflows {
+
+  .overflow-#{$name} {
+    overflow: $val;
+  }
+
+  @include nm(overflow-#{$name}) {
+    overflow: $val;
+  }
+
+  @include mob(overflow-#{$name}) {
+    overflow: $val;
+  }
+
+  @include less-device(overflow-#{$name}) {
+    overflow: $val;
+  }
+
+  .overflow-x-#{$name} {
+    overflow-x: $val;
+  }
+
+  @include nm(overflow-x-#{$name}) {
+    overflow-x: $val;
+  }
+
+  @include mob(overflow-x-#{$name}) {
+    overflow-x: $val;
+  }
+
+  @include less-device(overflow-x-#{$name}) {
+    overflow-x: $val;
+  }
+
+  @include tb(overflow-x-#{$name}) {
+    overflow-x: $val;
+  }
+
+  @include dk(overflow-x-#{$name}) {
+    overflow-x: $val;
+  }
+
+  @include bt-mob-dk(overflow-x-#{$name}) {
+    overflow-x: $val;
+  }
+
+  @include bt-lap-4k(overflow-x-#{$name}) {
+    overflow-x: $val;
+  }
+
+  .overflow-y-#{$name} {
+    overflow-y: $val;
+  }
+
+  @include nm(overflow-y-#{$name}) {
+    overflow-y: $val;
+  }
+
+  @include mob(overflow-y-#{$name}) {
+    overflow-y: $val;
+  }
+
+  @include tb(overflow-y-#{$name}) {
+    overflow-y: $val;
+  }
+
+  @include dk(overflow-y-#{$name}) {
+    overflow-y: $val;
+  }
+
+  @include bt-mob-dk(overflow-x-#{$name}) {
+    overflow-y: $val;
+  }
+
+  @include bt-lap-4k(overflow-x-#{$name}) {
+    overflow-y: $val;
+  }
+}
+
+.text-overflow-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.white-space-nowrap {
+  white-space: nowrap;
+}

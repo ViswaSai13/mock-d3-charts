@@ -1,0 +1,46 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: Reset
+name: reset
+category: Reset
+---
+## Custom Reset
+Remove unwanted native browser styles
+
+body: min-width 320px
+h1 - h6: margin 0
+a: no underline, inherit color
+p: no margin top
+ul: no margin
+*/
+// stylelint-enable
+
+body {
+  min-width: 20em; // 320px
+}
+
+.gpu-rendering * {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  margin-top: 0; // fixes vertical alignment issues when neighboring content
+}

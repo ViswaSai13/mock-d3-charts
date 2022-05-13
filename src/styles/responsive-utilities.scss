@@ -1,0 +1,112 @@
+// stylelint-disable no-eol-whitespace
+
+/* doc
+---
+title: Responsive Utilities
+name: responsive-utilities
+category: Responsive Utilities
+---
+## Responsive Utilities
+
+<div>.hide-mb: <span class="hide-mb text-kelly-green">visible</span></div>
+<div>.hide-mb-tb, .hide-device: <span class="hide-mb-tb text-kelly-green">visible</span></div>
+<div>.hide-tb-dk, .hide-nm: <span class="hide-nm text-kelly-green">visible</span></div>
+<div>.hide-tb: <span class="hide-tb text-kelly-green">visible</span></div>
+<div>.hide-dk: <span class="hide-dk text-kelly-green">visible</span></div>
+<br>
+<h3>Landscape/Portrait</h3>
+<div>.hide-portrait-tb: <span class="hide-portrait-tb">Hey, i'm invisible in portrait mode on a tablet</span></div>
+*/
+// stylelint-enable
+
+@import './_breakpoints.scss';
+
+.hide-mb {
+  @include mobile {
+    display: none;
+  }
+}
+
+.hide-tb-dk,
+.hide-nm,
+.show-mb-only {
+  @include not-mobile {
+    display: none;
+  }
+}
+
+.hide-tb {
+  @include tablet {
+    display: none;
+  }
+}
+
+.show-tb-only {
+  @include mobile {
+    display: none;
+  }
+
+  @include desktop {
+    display: none;
+  }
+}
+
+.hide-mb-tb,
+.hide-device,
+.show-dk-only {
+  @include device {
+    display: none;
+  }
+}
+
+.hide-dk {
+  @include desktop {
+    display: none;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  @include tablet {
+    .hide-portrait-tb {
+      display: none;
+    }
+  }
+}
+
+/**
+ * Class used to set the default heights on flipbook and gallery carousel images
+ */
+.min-slide-height {
+  min-height: 15.625rem; // default - 250px
+
+  @include desktop {
+    @media only screen and (orientation: landscape) {
+      min-height: 25.5rem; // 408px
+    }
+
+    @media only screen and (orientation: portrait) {
+      min-height: 16rem; // 256px
+    }
+  }
+
+  @include tablet {
+    @media only screen and (orientation: portrait) {
+      min-height: 15.625rem; // 250px
+    }
+
+    @media only screen and (orientation: portrait) {
+      min-height: 16rem; // 256px
+    }
+  }
+
+  // set to accommodate mobile devices as small as an iphone 4
+  @include mobile {
+    @media only screen and (orientation: portrait) {
+      min-height: 12.188rem; // 195px
+    }
+
+    @media only screen and (orientation: landscape) {
+      min-height: 18.125rem; // 290px
+    }
+  }
+}
