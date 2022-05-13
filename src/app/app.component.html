@@ -57,33 +57,65 @@
 </div>
 <div class="w100p ph4 pb2 flex justify-end">
   <div
-    class="border-all border-indigo text-indigo pointer ph2 pv1 br5 f14 w130 text-center"
-    (click)="toggleExpand()"
+    class="border-all border-indigo text-indigo pointer ph2 pv1 br5 f14 w100 text-center"
+    (click)="resetMap()"
   >
-    <div *ngIf="!isExpand">Expand View</div>
-    <div *ngIf="isExpand">Collapse View</div>
+    <div>Reset Map</div>
   </div>
 </div>
 <div class="chartsContent w100p ph4">
+  <div class="box-shadow-card br8 mv2 flex justify-center overflow-h">
+    <app-map-chart
+      *ngIf="!isMapLoading"
+      (countryClick)="countryClicked($event)"
+    ></app-map-chart>
+    <div
+      *ngIf="isMapLoading"
+      class="flex flex-grow justify-center align-items-center h500"
+    >
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+  <div class="w100p pv2 flex justify-end">
+    <div
+      class="border-all border-indigo text-indigo pointer ph2 pv1 br5 f14 w130 text-center"
+      (click)="toggleExpand()"
+    >
+      <div *ngIf="!isExpand">Expand View</div>
+      <div *ngIf="isExpand">Collapse View</div>
+    </div>
+  </div>
   <div
-    class="chartRow1 flex w100p justify-between pv2"
+    class="chartRow1 flex flex-gap2 w100p pv2"
     [ngClass]="[!isExpand ? 'flex-row' : 'flex-col']"
   >
-    <div class="flex border-all" [ngClass]="[!isExpand ? 'w50p' : 'w100p']">
+    <div
+      class="flex box-shadow-card justify-center h100 br5"
+      [ngClass]="[!isExpand ? 'w50p' : 'w100p']"
+    >
       <app-line-chart></app-line-chart>
     </div>
-    <div class="flex border-all" [ngClass]="[!isExpand ? 'w50p' : 'w100p mt4']">
+    <div
+      class="flex box-shadow-card justify-center h100 br5"
+      [ngClass]="[!isExpand ? 'w50p' : 'w100p mt4']"
+    >
       <app-bubble-chart></app-bubble-chart>
     </div>
   </div>
   <div
-    class="chartRow2 flex w100p justify-between pv2"
+    class="chartRow2 flex flex-gap2 w100p pv2"
     [ngClass]="[!isExpand ? 'flex-row' : 'flex-col']"
   >
-    <div class="flex border-all" [ngClass]="[!isExpand ? 'w50p' : 'w100p']">
+    <div
+      class="flex box-shadow-card justify-center h100 br5"
+      [ngClass]="[!isExpand ? 'w50p' : 'w100p']"
+    >
       <app-pie-chart></app-pie-chart>
     </div>
-    <div class="flex border-all" [ngClass]="[!isExpand ? 'w50p' : 'w100p mt4']">
+    <div
+      class="flex box-shadow-card justify-center h100 br5"
+      [ngClass]="[!isExpand ? 'w50p' : 'w100p mt4']"
+    >
       <app-bar-chart></app-bar-chart>
     </div>
   </div>
