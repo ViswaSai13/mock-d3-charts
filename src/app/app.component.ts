@@ -1,4 +1,5 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -6,12 +7,22 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit{
+export class AppComponent implements OnInit, AfterViewInit{
   title = 'mock-d3-charts';
   isExpand = false
   isMapLoading = true
+  isDarkmode = false
 
   constructor(private _snackBar: MatSnackBar) {}
+
+  ngOnInit(): void {
+    console.log(localStorage.getItem("darkmode"))
+    if (localStorage.getItem("darkmode") === null) {
+      localStorage.setItem('darkmode', this.isDarkmode.toString())
+    } else {
+      this.isDarkmode = JSON.parse(localStorage.getItem('darkmode'))
+    }
+  }
 
   ngAfterViewInit(){
     this.loadMap()
@@ -43,4 +54,11 @@ export class AppComponent implements AfterViewInit{
   countryClicked(param){
     this.openSnackBar(`${param.properties.adm1name}, ${param.properties.adm0name}`, 'X')
   }
+
+  toggleDarkmode(event: MatSlideToggleChange){
+    this.resetMap()
+    this.isDarkmode = event.checked
+    localStorage.setItem('darkmode', this.isDarkmode.toString())
+  }
+
 }
