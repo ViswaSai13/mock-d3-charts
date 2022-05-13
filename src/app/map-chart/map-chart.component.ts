@@ -67,7 +67,7 @@ d3.json(worldMapURL).then(function(world: any) {
           .features)
       .enter().append("path")
       .attr("stroke", "#A8C4D5")
-      .attr("fill", "#f0f0f7")
+      .attr("fill", "#dbdbe1")
       .attr("d", path)
 
       g.selectAll("circle")
