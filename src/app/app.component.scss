@@ -9,6 +9,12 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .appView{
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
   h1,
   h2,
   h3,
@@ -34,7 +40,6 @@
     height: 60px;
     display: flex;
     align-items: center;
-    background-color: #1976d2;
     color: white;
     font-weight: 600;
   }
@@ -114,7 +119,6 @@
   }
 
   .card.highlight-card {
-    background-color: #1976d2;
     color: white;
     font-weight: 600;
     border: none;
@@ -132,4 +136,16 @@
     position: absolute;
     left: -10px;
     top: -24px;
+  }
+  
+  .bgLight{
+    background-color: #1976d2;
+  }
+
+  .bgDark{
+    background-color: black;
+  }
+
+  .bgDark2{
+    background-color: #191919;
   }
