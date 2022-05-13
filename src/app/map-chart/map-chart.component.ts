@@ -9,7 +9,7 @@ import * as topojson from 'topojson';
 })
 export class MapChartComponent implements OnInit {
 
-  // @Input() mapData: any
+  @Input() isDarkmode: boolean
   @Output() countryClick = new EventEmitter()
 
   constructor() { }
@@ -30,7 +30,7 @@ export class MapChartComponent implements OnInit {
 
   mapChart(){
 
-const meteoriteDataURL = "https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/meteorite-strike-data.json";
+// const meteoriteDataURL = "https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/meteorite-strike-data.json";
 const worldMapURL = "https://gist.githubusercontent.com/d3noob/5193723/raw/world-110m2.json";
 const mainCitiesURL = "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_populated_places_simple.geojson"
 
@@ -54,6 +54,7 @@ const path = d3.geoPath()
 
 const showInfo = d3.select('.show-if')
 const emitter = this.countryClick
+let isDarkmode = this.isDarkmode
 
 // load and display the world map
 d3.json(worldMapURL).then(function(world: any) {
@@ -66,7 +67,13 @@ d3.json(worldMapURL).then(function(world: any) {
       .data(topojson.feature(world, world.objects.countries)
           .features)
       .enter().append("path")
-      .attr("stroke", "#A8C4D5")
+      .attr("stroke", function () {
+        if(isDarkmode){
+          return "#7885cb"
+        } else {
+          return "#97b0bf"
+        }
+      })
       .attr("fill", "#dbdbe1")
       .attr("d", path)
 
