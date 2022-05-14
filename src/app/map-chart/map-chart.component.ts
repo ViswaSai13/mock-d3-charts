@@ -31,8 +31,9 @@ export class MapChartComponent implements OnInit {
   mapChart(){
 
 // const meteoriteDataURL = "https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/meteorite-strike-data.json";
-const worldMapURL = "https://gist.githubusercontent.com/d3noob/5193723/raw/world-110m2.json";
-const mainCitiesURL = "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_populated_places_simple.geojson"
+const worldMapURL = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
+// const mainCitiesURL = "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_populated_places_simple.geojson"
+const mainCitiesURL = "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_populated_places.geojson"
 
 const width = 1000,
       height = 500;
@@ -61,10 +62,10 @@ d3.json(worldMapURL).then(function(world: any) {
   
   d3.json(mainCitiesURL).then(function(mainCities: any) {
 
-    console.log(mainCities)
+    // console.log(mainCities)
     
     g.selectAll("path")
-      .data(topojson.feature(world, world.objects.countries)
+      .data(topojson.feature(world, world.objects.countries1)
           .features)
       .enter().append("path")
       .attr("stroke", function () {
@@ -85,7 +86,8 @@ d3.json(worldMapURL).then(function(world: any) {
       .attr('cy', function(d: any) { return projection(d.geometry.coordinates)[1] })
       .attr('r', function(d: any){
 				// return Math.sqrt(Math.sqrt(d.properties.pop_max))
-				return Math.floor(Math.pow(d.properties.pop_max, 1/7))
+				// return Math.floor(Math.pow(d.properties.pop_max, 1/7))
+        return 4
       })
       .attr('fill', "#0274ff2b")
       .attr('fill-opacity', 0.5)
@@ -93,7 +95,10 @@ d3.json(worldMapURL).then(function(world: any) {
       .attr('stroke-width', 1)
       .attr('cursor', 'pointer')
       .on('click', function(e, d: any) {
-        emitter.emit(d)
+        emitter.emit({
+          city: d.properties.NAME,
+          country: d.properties.SOV0NAME
+        })
       })
 
       // Hover affect
@@ -102,9 +107,9 @@ d3.json(worldMapURL).then(function(world: any) {
       .style("top", (e.pageY + 10) + "px");
 
       d3.select('.show-if').style('display', 'inline-block');
-      d3.select('.cityName').text(d.properties.adm1name);
-      d3.select('.countryName').text(d.properties.adm0name);
-      d3.select('.popSize').text(d.properties.pop_max);
+      d3.select('.cityName').text(d.properties.NAME);
+      d3.select('.countryName').text(d.properties.SOV0NAME);
+      d3.select('.popSize').text(d.properties.POP_MAX);
     }).on('mouseout', function(e,d){
       d3.select('.show-if').style('display', 'none');
     })
@@ -118,8 +123,21 @@ d3.json(worldMapURL).then(function(world: any) {
 
   
 function zoomed(e) {
-	// console.log(e)
+	// console.log(e.transform.k)
   g.attr("transform", e.transform);
+  g.selectAll("circle")
+  .attr('r', function(d: any){
+    // return Math.sqrt(Math.sqrt(d.properties.pop_max))
+    // return Math.floor(Math.pow(d.properties.pop_max, 1/7))
+    if(e.transform.k > 2 && e.transform.k < 10) return 2
+    if(e.transform.k > 10) return 1
+    else return 4
+  })
+  .attr('stroke-width', function(d: any){
+    if(e.transform.k > 2 && e.transform.k < 10) return 0.5
+    if(e.transform.k > 10) return 0.3
+    else return 1
+  })
 }
   }
 }
