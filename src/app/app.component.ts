@@ -52,7 +52,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   }
 
   countryClicked(param){
-    this.openSnackBar(`${param.properties.adm1name}, ${param.properties.adm0name}`, 'X')
+    this.openSnackBar(`${param.city}, ${param.country}`, 'X')
   }
 
   toggleDarkmode(event: MatSlideToggleChange){
