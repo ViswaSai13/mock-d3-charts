@@ -1,1 +1,16 @@
-<div>line-chart coming soon!</div>
+<div
+  class="flex flex-row align-items-center flex-wrap f12 text-suva-grey ph20"
+  id="legends"
+>
+  <ul
+    *ngFor="let item of keys; index as i"
+    class="flex flex-row align-items-center mr3"
+  >
+    <li
+      class="w10 h10 br50p mr1"
+      [ngStyle]="{ 'background-color': item.color }"
+    ></li>
+    <li *ngIf="item?.key" class="capitalize">{{ item.key }}</li>
+  </ul>
+</div>
+<div [id]="'chart' + chartId" class="overflow-x-s scrollbar-hide"></div>

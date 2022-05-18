@@ -12,11 +12,15 @@ export class AppComponent implements OnInit, AfterViewInit{
   isExpand = false
   isMapLoading = true
   isDarkmode = false
+  isShowNote = false
+  isCountrySelected = false
+  selectedCountry = []
+
+  lineChartFlag = false
 
   constructor(private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
-    console.log(localStorage.getItem("darkmode"))
     if (localStorage.getItem("darkmode") === null) {
       localStorage.setItem('darkmode', this.isDarkmode.toString())
     } else {
@@ -26,15 +30,26 @@ export class AppComponent implements OnInit, AfterViewInit{
 
   ngAfterViewInit(){
     this.loadMap()
+    // this.generateRandomData()
   }
   
+  // generateRandomData(){
+  //   console.log('hi')
+  // }
+
   toggleExpand(){
     this.isExpand = !this.isExpand
+  }
+
+  toggleShowNote(){
+    this.isShowNote = !this.isShowNote
   }
 
   resetMap(){
     this.isMapLoading = true
     this.loadMap()
+    this.selectedCountry.length = 0
+    this.isCountrySelected = false
   }
 
   loadMap(){
@@ -51,8 +66,27 @@ export class AppComponent implements OnInit, AfterViewInit{
     });
   }
 
-  countryClicked(param){
-    this.openSnackBar(`${param.city}, ${param.country}`, 'X')
+  // loadLineChart(){
+  //   setTimeout(() => {
+  //     this.lineChartFlag = true
+  //   }, 5000);
+  // }
+
+  countryClicked(d){
+    this.selectedCountry.length = 0
+    this.isCountrySelected = true
+    // setTimeout(() => {
+    //   this.loadLineChart()
+    // }, 1000);
+    Object.keys(d.properties).forEach((keyName)=>{
+      if(d.properties[keyName] != undefined || d.properties[keyName] != null){
+        this.selectedCountry.push({
+          keyName: keyName,
+          property: d.properties[keyName]
+        })
+      }
+    })
+    this.openSnackBar(`${d.properties.NAME}, ${d.properties.SOV0NAME}`, 'X')
   }
 
   toggleDarkmode(event: MatSlideToggleChange){

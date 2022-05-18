@@ -34,6 +34,7 @@ export class MapChartComponent implements OnInit {
 const worldMapURL = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 // const mainCitiesURL = "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_populated_places_simple.geojson"
 const mainCitiesURL = "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_populated_places.geojson"
+// const mainAirportsURL = "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_airports.geojson"
 
 const width = 1000,
       height = 500;
@@ -95,14 +96,12 @@ d3.json(worldMapURL).then(function(world: any) {
       .attr('stroke-width', 1)
       .attr('cursor', 'pointer')
       .on('click', function(e, d: any) {
-        emitter.emit({
-          city: d.properties.NAME,
-          country: d.properties.SOV0NAME
-        })
+        emitter.emit(d)
       })
 
       // Hover affect
     g.selectAll("circle").on('mouseover', function(e,d: any){
+      // console.log(d)
       showInfo.style("left", (e.pageX + 10) + "px")
       .style("top", (e.pageY + 10) + "px");
 
