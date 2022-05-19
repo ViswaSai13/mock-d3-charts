@@ -1,15 +1,13 @@
-#chart {
-    text-align: center;
-  }
-  
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-  ul{
-    list-style: none;
-    padding-left: 0;
-  }
+
+ul{
+  list-style: none;
+  padding-left: 0;
+}
+
+.text {
+  font-size: 12px;
+}
+
+.title-text {
+  font-size: 12px;
+}

@@ -38,28 +38,28 @@
       World Map with Major cities
     </div>
   </div>
-  <div class="w100p ph4 pb2 flex flex-gap2">
+  <div class="w100p ph4 pb2 flex flex-gap2 flex-gap1-dk">
     <div class="flex-grow flex align-items-center">
       <div
         *ngIf="isShowNote"
-        class="w100p flex border-all border-charcoal italic ph2 pv1 br5 f14 justify-between"
+        class="w100p flex border-all border-charcoal italic ph2 pv1 br5 f14 justify-between showNote"
         [ngClass]="[isDarkmode ? 'text-light-grey' : 'text-charcoal']"
       >
         <div class="pa1">
           <div class="pv1">Available Functionality:</div>
-          <div>1) Hover/click on the locations to get info in tooltip</div>
+          <div>1) Hover/click on the locations to get info in tooltip.</div>
           <div>
-            2) Zoom in/out of the map. Click reset to load default map view
+            2) Zoom in/out of the map. Click reset to load default map view.
           </div>
           <div>
-            3) Select a location to load/view some more data below the map
+            3) Select a location to load/view some more charts below the map.
           </div>
         </div>
         <mat-icon aria-hidden="false" (click)="toggleShowNote()" class="pointer"
           >expand_less</mat-icon
         >
       </div>
-      <div *ngIf="!isShowNote" class="w100p flex justify-end">
+      <div *ngIf="!isShowNote" class="w100p flex justify-end showNote">
         <div
           class="border-all border-suva-grey text-suva-grey italic flex pointer ph2 pv1 br5 f14 h32"
           (click)="toggleShowNote()"
@@ -104,7 +104,7 @@
       </div>
     </div>
 
-    <div
+    <!-- <div
       *ngIf="isCountrySelected"
       class="br8 mv4 pa3 flex flex-wrap justify-between"
       [ngClass]="[
@@ -114,7 +114,7 @@
       ]"
     >
       <div
-        class="flex flex-gap1 w30p pa3 justify-between"
+        class="flex flex-gap1 w30p pa3 f12 justify-between"
         *ngFor="let item of selectedCountry; index as i"
       >
         <div>
@@ -124,9 +124,9 @@
           {{ item.property }}
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <!-- <div *ngIf="isCountrySelected" class="w100p pv2 flex justify-end toggleBtn">
+    <div *ngIf="isCountrySelected" class="w100p pv2 flex justify-end toggleBtn">
       <div
         class="border-all pointer ph2 pv1 br5 f14 w100 text-center"
         (click)="toggleExpand()"
@@ -147,10 +147,9 @@
       </div>
     </div>
 
-
     <div
       *ngIf="isCountrySelected"
-      class="chartRow1 flex-dk flex-tb flex-gap2 w100p h340 pv2"
+      class="chartRow1 flex-dk flex-tb flex-gap2 w100p pv2"
       [ngClass]="[!isExpand ? 'flex-row' : 'flex-col']"
     >
       <div
@@ -163,11 +162,16 @@
         ]"
       >
         <app-line-chart
-          *ngIf="lineChartFlag"
-          [graphData]="chartData"
-          [chartId]="4"
+          *ngIf="showChart"
+          [data]="chartData"
           class="pa4 w100p"
         ></app-line-chart>
+        <div
+          *ngIf="!showChart"
+          class="flex flex-grow justify-center align-items-center h350"
+        >
+          <mat-spinner></mat-spinner>
+        </div>
       </div>
       <div
         class="flex justify-center br5"
@@ -178,10 +182,19 @@
           !isExpand ? 'w50p-nm mt0-nm mt4' : 'w100p mt4'
         ]"
       >
-        <app-bubble-chart></app-bubble-chart>
+        <app-bubble-chart
+          *ngIf="showChart"
+          [data]="chartData"
+          class="pa4 w100p"
+        ></app-bubble-chart>
+        <div
+          *ngIf="!showChart"
+          class="flex flex-grow justify-center align-items-center h350"
+        >
+          <mat-spinner></mat-spinner>
+        </div>
       </div>
-    </div>
-    <div
+      <!-- <div
       *ngIf="isCountrySelected"
       class="chartRow2 flex-dk flex-tb flex-gap2 w100p pv2"
       [ngClass]="[!isExpand ? 'flex-row' : 'flex-col']"
@@ -209,5 +222,6 @@
         <app-bar-chart></app-bar-chart>
       </div>
     </div> -->
+    </div>
   </div>
 </div>

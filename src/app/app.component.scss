@@ -79,6 +79,10 @@
     margin-top: 16px;
   }
 
+  .showNote{
+    transition: all 2s ease-in-out;
+  }
+
   .card {
     all: unset;
     border-radius: 4px;

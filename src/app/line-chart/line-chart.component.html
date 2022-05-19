@@ -3,14 +3,15 @@
   id="legends"
 >
   <ul
-    *ngFor="let item of keys; index as i"
+    *ngFor="let item of data; index as i"
     class="flex flex-row align-items-center mr3"
   >
     <li
       class="w10 h10 br50p mr1"
       [ngStyle]="{ 'background-color': item.color }"
     ></li>
-    <li *ngIf="item?.key" class="capitalize">{{ item.key }}</li>
+    <li *ngIf="item?.name" class="capitalize">{{ item.name }}</li>
   </ul>
 </div>
-<div [id]="'chart' + chartId" class="overflow-x-s scrollbar-hide"></div>
+<!-- <div [id]="'chart' + chartId" class="overflow-x-s scrollbar-hide"></div> -->
+<div id="lineChart"></div>
