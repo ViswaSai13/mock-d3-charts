@@ -42,7 +42,7 @@ export class BubbleChartComponent implements OnInit {
     const d3 = d3js
     const parentDiv = document.getElementById('bubbleChart').parentElement
     const margin = 50;
-    const width = parentDiv.clientWidth - margin - 40;
+    const width = parentDiv.clientWidth;
     const height = 300;
     const duration = 100;
 
