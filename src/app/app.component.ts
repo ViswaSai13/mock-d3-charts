@@ -33,10 +33,9 @@ export class AppComponent implements OnInit, AfterViewInit{
   }
 
   loadChartData(){
-    
     this.chartData = [
       {
-        name: "Line 1",
+        name: "Dataset 1",
         values: [
           {date: "2000", price: "100"},
           {date: "2001", price: "110"},
@@ -52,7 +51,7 @@ export class AppComponent implements OnInit, AfterViewInit{
         color: this.color('1')
       },
       {
-        name: "Line 2",
+        name: "Dataset 2",
         values: [
           {date: "2000", price: "200"},
           {date: "2001", price: "120"},
@@ -68,7 +67,7 @@ export class AppComponent implements OnInit, AfterViewInit{
         color: this.color('2')
       },
       {
-        name: "Line 3",
+        name: "Dataset 3",
         values: [
           {date: "2000", price: "50"},
           {date: "2001", price: "10"},
@@ -84,22 +83,25 @@ export class AppComponent implements OnInit, AfterViewInit{
         color: this.color('3')
       }
     ];
+    this.randomizeChartData()
+  }
+
+  randomizeChartData(){
+    this.chartData.forEach(element => {
+      element.values.forEach(datapoint => {
+        datapoint.price = Math.floor(Math.random()*220 + 10)
+      });
+    });
   }
 
   ngAfterViewInit(){
     this.loadMap()
     this.loadChartData()
-    // this.generateRandomData()
   }
-  
-  // generateRandomData(){
-  //   console.log('hi')
-  // }
 
   toggleExpand(){
     this.isExpand = !this.isExpand
     this.loadChartData()
-    this.showChart = false
     this.loadCharts()
   }
 
@@ -130,14 +132,19 @@ export class AppComponent implements OnInit, AfterViewInit{
   }
 
   loadCharts(){
+    this.showChart = false
     setTimeout(() => {
       this.showChart = true
+      document.getElementById('displayCharts').scrollIntoView({
+        behavior: 'smooth',
+    });
     }, 1000);
   }
 
   countryClicked(d){
     this.selectedCountry.length = 0
     this.isCountrySelected = true
+    this.loadChartData()
     this.loadCharts()
     Object.keys(d.properties).forEach((keyName)=>{
       if(d.properties[keyName] != undefined || d.properties[keyName] != null){

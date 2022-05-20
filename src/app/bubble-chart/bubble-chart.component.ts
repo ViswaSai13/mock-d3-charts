@@ -64,7 +64,7 @@ export class BubbleChartComponent implements OnInit {
     .domain(xScaleDomain)
     .range([0, width-margin]);
 
-    let yScaleDomain: any = [0, d3.max(this.data[0].values, (d:any) => d.price)]
+    let yScaleDomain: any = [0, d3.max(this.data[0].values, (d:any) => d.price+20)]
     var yScale = d3.scaleLinear()
     .domain(yScaleDomain)
     .range([height-margin, 0]);
