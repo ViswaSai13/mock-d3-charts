@@ -64,7 +64,9 @@
           class="border-all border-suva-grey text-suva-grey italic flex pointer ph2 pv1 br5 f14 h32"
           (click)="toggleShowNote()"
         >
-          <div class="ph1">Available Functionality</div>
+          <div id="hiddenSteps" class="ph1 hiddenSteps">
+            Available Functionality
+          </div>
           <mat-icon aria-hidden="false">expand_more</mat-icon>
         </div>
       </div>
@@ -148,6 +150,7 @@
     </div>
 
     <div
+      id="displayCharts"
       *ngIf="isCountrySelected"
       class="chartRow1 flex-dk flex-tb flex-gap2 w100p pv2"
       [ngClass]="[!isExpand ? 'flex-row' : 'flex-col']"

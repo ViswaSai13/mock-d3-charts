@@ -7,7 +7,7 @@ import * as d3js from 'd3'
   styleUrls: ['./line-chart.component.scss']
 })
 export class LineChartComponent implements OnInit, OnChanges {
-
+  
   @Input() data:any  
 
   constructor() { }
@@ -42,7 +42,7 @@ export class LineChartComponent implements OnInit, OnChanges {
     const d3 = d3js
     const parentDiv = document.getElementById('lineChart').parentElement
     const margin = 50;
-    const width = parentDiv.clientWidth - margin - 40;
+    const width = parentDiv.clientWidth;
     const height = 300;
     const duration = 250;
 
@@ -64,7 +64,7 @@ export class LineChartComponent implements OnInit, OnChanges {
     .domain(xScaleDomain)
     .range([0, width-margin]);
 
-    let yScaleDomain: any = [0, d3.max(this.data[0].values, (d:any) => d.price)]
+    let yScaleDomain: any = [0, d3.max(this.data[0].values, (d:any) => d.price+20)]
     var yScale = d3.scaleLinear()
     .domain(yScaleDomain)
     .range([height-margin, 0]);
