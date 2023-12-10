@@ -1,5 +1,9 @@
 # MockD3Charts
 
+A project to display Major Cities on World Map using d3.js. Mock charts such as line-chart, bubble-chart are added currently, with other type of charts under development.
+
+**[Online Demo](https://viswasai13.github.io/mock-d3-charts/)**
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.6.
 
 ## Development server
