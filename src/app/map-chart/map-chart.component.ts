@@ -31,7 +31,8 @@ export class MapChartComponent implements OnInit {
   mapChart(){
 
 // const meteoriteDataURL = "https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/meteorite-strike-data.json";
-const worldMapURL = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
+const worldMapURL = "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json";
+    // https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json
 // const mainCitiesURL = "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_populated_places_simple.geojson"
 const mainCitiesURL = "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_populated_places.geojson"
 // const mainAirportsURL = "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_airports.geojson"
